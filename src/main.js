@@ -11,4 +11,5 @@ const metalJSX = {
 };
 
 Babel.registerPreset('metal-jsx', metalJSX);
-window.metal = metal;
+
+module.exports = metal.JSXComponent;
