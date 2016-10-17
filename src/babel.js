@@ -1,4 +1,3 @@
-const metal = require('metal-jsx');
 const Babel = require('babel-standalone');
 const BabelPresetMetalJSX = require('babel-preset-metal-jsx');
 
@@ -11,5 +10,3 @@ const metalJSX = {
 };
 
 Babel.registerPreset('metal-jsx', metalJSX);
-
-module.exports = metal.JSXComponent;

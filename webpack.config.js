@@ -1,10 +1,12 @@
 module.exports = {
-    entry: './src/main.js',
+    entry: {
+        babel: './src/babel.js',
+        metal: './src/metal.js'
+    },
     output: {
         path: './bin',
-        filename: 'metal-standalone.bundle.js',
-        libraryTarget: "var",
-        library: "JSXComponent"
+        filename: '[name].bundle.js',
+        libraryTarget: 'this'
     },
      module: {
          loaders: [{
