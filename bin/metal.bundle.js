@@ -50,6 +50,7 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
+	exports.State = exports.IncrementalDomRenderer = undefined;
 
 	var _metal = __webpack_require__(305);
 
@@ -111,18 +112,6 @@
 	  });
 	});
 
-	var _metalIncrementalDom = __webpack_require__(316);
-
-	Object.keys(_metalIncrementalDom).forEach(function (key) {
-	  if (key === "default" || key === "__esModule") return;
-	  Object.defineProperty(exports, key, {
-	    enumerable: true,
-	    get: function get() {
-	      return _metalIncrementalDom[key];
-	    }
-	  });
-	});
-
 	var _metalState = __webpack_require__(337);
 
 	Object.defineProperty(exports, 'State', {
@@ -131,6 +120,14 @@
 	    return _metalState.State;
 	  }
 	});
+
+	var _metalIncrementalDom = __webpack_require__(316);
+
+	var _metalIncrementalDom2 = _interopRequireDefault(_metalIncrementalDom);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.IncrementalDomRenderer = _metalIncrementalDom2.default;
 
 /***/ },
 
