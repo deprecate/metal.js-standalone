@@ -51,7 +51,7 @@
 	  value: true
 	});
 
-	var _metal = __webpack_require__(326);
+	var _metal = __webpack_require__(305);
 
 	Object.keys(_metal).forEach(function (key) {
 	  if (key === "default" || key === "__esModule") return;
@@ -63,7 +63,7 @@
 	  });
 	});
 
-	var _metalJsx = __webpack_require__(335);
+	var _metalJsx = __webpack_require__(314);
 
 	Object.keys(_metalJsx).forEach(function (key) {
 	  if (key === "default" || key === "__esModule") return;
@@ -75,7 +75,7 @@
 	  });
 	});
 
-	var _metalEvents = __webpack_require__(344);
+	var _metalEvents = __webpack_require__(323);
 
 	Object.keys(_metalEvents).forEach(function (key) {
 	  if (key === "default" || key === "__esModule") return;
@@ -87,7 +87,7 @@
 	  });
 	});
 
-	var _metalDom = __webpack_require__(339);
+	var _metalDom = __webpack_require__(318);
 
 	Object.keys(_metalDom).forEach(function (key) {
 	  if (key === "default" || key === "__esModule") return;
@@ -99,7 +99,7 @@
 	  });
 	});
 
-	var _metalComponent = __webpack_require__(355);
+	var _metalComponent = __webpack_require__(334);
 
 	Object.keys(_metalComponent).forEach(function (key) {
 	  if (key === "default" || key === "__esModule") return;
@@ -111,7 +111,19 @@
 	  });
 	});
 
-	var _metalState = __webpack_require__(358);
+	var _metalIncrementalDom = __webpack_require__(316);
+
+	Object.keys(_metalIncrementalDom).forEach(function (key) {
+	  if (key === "default" || key === "__esModule") return;
+	  Object.defineProperty(exports, key, {
+	    enumerable: true,
+	    get: function get() {
+	      return _metalIncrementalDom[key];
+	    }
+	  });
+	});
+
+	var _metalState = __webpack_require__(337);
 
 	Object.defineProperty(exports, 'State', {
 	  enumerable: true,
@@ -122,7 +134,7 @@
 
 /***/ },
 
-/***/ 306:
+/***/ 285:
 /***/ function(module, exports) {
 
 	// shim for using process in browser
@@ -309,7 +321,7 @@
 
 /***/ },
 
-/***/ 326:
+/***/ 305:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -319,7 +331,7 @@
 	});
 	exports.string = exports.object = exports.Disposable = exports.async = exports.array = undefined;
 
-	var _core = __webpack_require__(327);
+	var _core = __webpack_require__(306);
 
 	Object.keys(_core).forEach(function (key) {
 	  if (key === "default" || key === "__esModule") return;
@@ -333,23 +345,23 @@
 
 	var _core2 = _interopRequireDefault(_core);
 
-	var _array = __webpack_require__(329);
+	var _array = __webpack_require__(308);
 
 	var _array2 = _interopRequireDefault(_array);
 
-	var _async = __webpack_require__(330);
+	var _async = __webpack_require__(309);
 
 	var _async2 = _interopRequireDefault(_async);
 
-	var _Disposable = __webpack_require__(332);
+	var _Disposable = __webpack_require__(311);
 
 	var _Disposable2 = _interopRequireDefault(_Disposable);
 
-	var _object = __webpack_require__(333);
+	var _object = __webpack_require__(312);
 
 	var _object2 = _interopRequireDefault(_object);
 
-	var _string = __webpack_require__(334);
+	var _string = __webpack_require__(313);
 
 	var _string2 = _interopRequireDefault(_string);
 
@@ -364,7 +376,7 @@
 
 /***/ },
 
-/***/ 327:
+/***/ 306:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -379,7 +391,7 @@
 	});
 	exports.core = undefined;
 
-	var _coreNamed = __webpack_require__(328);
+	var _coreNamed = __webpack_require__(307);
 
 	Object.keys(_coreNamed).forEach(function (key) {
 	  if (key === "default" || key === "__esModule") return;
@@ -400,7 +412,7 @@
 
 /***/ },
 
-/***/ 328:
+/***/ 307:
 /***/ function(module, exports) {
 
 	'use strict';
@@ -414,7 +426,7 @@
 	  value: true
 	});
 
-	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 	exports.abstractMethod = abstractMethod;
 	exports.collectSuperClassesProperty = collectSuperClassesProperty;
@@ -490,7 +502,7 @@
 	 * Disables Metal.js's compatibility mode.
 	 */
 	function disableCompatibilityMode() {
-	  compatibilityModeData_ = null;
+	  compatibilityModeData_ = undefined;
 	}
 
 	/**
@@ -510,7 +522,7 @@
 	 * @type {Object}
 	 */
 	function enableCompatibilityMode() {
-	  var opt_data = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+	  var opt_data = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 
 	  compatibilityModeData_ = opt_data;
 	}
@@ -522,7 +534,7 @@
 	 */
 	function getCompatibilityModeData() {
 	  // Compatibility mode can be set via the __METAL_COMPATIBILITY__ global var.
-	  if (!compatibilityModeData_) {
+	  if (compatibilityModeData_ === undefined) {
 	    if (typeof window !== 'undefined' && window.__METAL_COMPATIBILITY__) {
 	      enableCompatibilityMode(window.__METAL_COMPATIBILITY__);
 	    }
@@ -720,7 +732,7 @@
 
 /***/ },
 
-/***/ 329:
+/***/ 308:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -731,7 +743,7 @@
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _core = __webpack_require__(327);
+	var _core = __webpack_require__(306);
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -860,7 +872,7 @@
 
 /***/ },
 
-/***/ 330:
+/***/ 309:
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(setImmediate) {/*!
@@ -1101,14 +1113,14 @@
 	};
 
 	exports.default = async;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(331).setImmediate))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(310).setImmediate))
 
 /***/ },
 
-/***/ 331:
+/***/ 310:
 /***/ function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function(setImmediate, clearImmediate) {var nextTick = __webpack_require__(306).nextTick;
+	/* WEBPACK VAR INJECTION */(function(setImmediate, clearImmediate) {var nextTick = __webpack_require__(285).nextTick;
 	var apply = Function.prototype.apply;
 	var slice = Array.prototype.slice;
 	var immediateIds = {};
@@ -1184,11 +1196,11 @@
 	exports.clearImmediate = typeof clearImmediate === "function" ? clearImmediate : function(id) {
 	  delete immediateIds[id];
 	};
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(331).setImmediate, __webpack_require__(331).clearImmediate))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(310).setImmediate, __webpack_require__(310).clearImmediate))
 
 /***/ },
 
-/***/ 332:
+/***/ 311:
 /***/ function(module, exports) {
 
 	'use strict';
@@ -1264,7 +1276,7 @@
 
 /***/ },
 
-/***/ 333:
+/***/ 312:
 /***/ function(module, exports) {
 
 	'use strict';
@@ -1374,7 +1386,7 @@
 
 /***/ },
 
-/***/ 334:
+/***/ 313:
 /***/ function(module, exports) {
 
 	'use strict';
@@ -1393,7 +1405,27 @@
 		}
 
 		_createClass(string, null, [{
-			key: 'collapseBreakingSpaces',
+			key: 'caseInsensitiveCompare',
+
+			/**
+	   * Compares the given strings without taking the case into account.
+	   * @param {string|number} str1
+	   * @param {string|number} str2
+	   * @return {number} Either -1, 0 or 1, according to if the first string is
+	   *     "smaller", equal or "bigger" than the second given string.
+	   */
+			value: function caseInsensitiveCompare(str1, str2) {
+				var test1 = String(str1).toLowerCase();
+				var test2 = String(str2).toLowerCase();
+
+				if (test1 < test2) {
+					return -1;
+				} else if (test1 === test2) {
+					return 0;
+				} else {
+					return 1;
+				}
+			}
 
 			/**
 	   * Removes the breaking spaces from the left and right of the string and
@@ -1402,6 +1434,9 @@
 	   * @param {string} str A string in which to collapse spaces.
 	   * @return {string} Copy of the string with normalized breaking spaces.
 	   */
+
+		}, {
+			key: 'collapseBreakingSpaces',
 			value: function collapseBreakingSpaces(str) {
 				return str.replace(/[\t\r\n ]+/g, ' ').replace(/^[\t\r\n ]+|[\t\r\n ]+$/g, '');
 			}
@@ -1476,7 +1511,7 @@
 
 /***/ },
 
-/***/ 335:
+/***/ 314:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1488,23 +1523,23 @@
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	__webpack_require__(336);
+	__webpack_require__(315);
 
-	var _metalState = __webpack_require__(358);
+	var _metalState = __webpack_require__(337);
 
-	var _metalComponent = __webpack_require__(355);
+	var _metalComponent = __webpack_require__(334);
 
 	var _metalComponent2 = _interopRequireDefault(_metalComponent);
 
-	var _metalIncrementalDom = __webpack_require__(337);
+	var _metalIncrementalDom = __webpack_require__(316);
 
 	var _metalIncrementalDom2 = _interopRequireDefault(_metalIncrementalDom);
 
-	var _JSXDataManager = __webpack_require__(369);
+	var _JSXDataManager = __webpack_require__(348);
 
 	var _JSXDataManager2 = _interopRequireDefault(_JSXDataManager);
 
-	var _JSXRenderer = __webpack_require__(368);
+	var _JSXRenderer = __webpack_require__(347);
 
 	var _JSXRenderer2 = _interopRequireDefault(_JSXRenderer);
 
@@ -1567,7 +1602,7 @@
 
 /***/ },
 
-/***/ 336:
+/***/ 315:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1576,13 +1611,13 @@
 		value: true
 	});
 
-	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-	var _metalIncrementalDom = __webpack_require__(337);
+	var _metalIncrementalDom = __webpack_require__(316);
 
 	var _metalIncrementalDom2 = _interopRequireDefault(_metalIncrementalDom);
 
-	var _JSXRenderer = __webpack_require__(368);
+	var _JSXRenderer = __webpack_require__(347);
 
 	var _JSXRenderer2 = _interopRequireDefault(_JSXRenderer);
 
@@ -1641,7 +1676,7 @@
 
 /***/ },
 
-/***/ 337:
+/***/ 316:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1654,27 +1689,27 @@
 
 	var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-	__webpack_require__(338);
+	__webpack_require__(317);
 
-	var _metal = __webpack_require__(326);
+	var _metal = __webpack_require__(305);
 
-	var _metalDom = __webpack_require__(339);
+	var _metalDom = __webpack_require__(318);
 
-	var _metalComponent = __webpack_require__(355);
+	var _metalComponent = __webpack_require__(334);
 
-	var _IncrementalDomAop = __webpack_require__(364);
+	var _IncrementalDomAop = __webpack_require__(343);
 
 	var _IncrementalDomAop2 = _interopRequireDefault(_IncrementalDomAop);
 
-	var _IncrementalDomChildren = __webpack_require__(365);
+	var _IncrementalDomChildren = __webpack_require__(344);
 
 	var _IncrementalDomChildren2 = _interopRequireDefault(_IncrementalDomChildren);
 
-	var _IncrementalDomUnusedComponents = __webpack_require__(367);
+	var _IncrementalDomUnusedComponents = __webpack_require__(346);
 
 	var _IncrementalDomUnusedComponents2 = _interopRequireDefault(_IncrementalDomUnusedComponents);
 
-	var _IncrementalDomUtils = __webpack_require__(366);
+	var _IncrementalDomUtils = __webpack_require__(345);
 
 	var _IncrementalDomUtils2 = _interopRequireDefault(_IncrementalDomUtils);
 
@@ -1705,18 +1740,17 @@
 			comp.context = {};
 			comp.refs = {};
 			_this.config_ = comp.getInitialConfig();
-			_this.childComponents_ = [];
 			_this.clearChanges_();
-			comp.on('attached', _this.handleAttached_.bind(_this));
 
 			// Binds functions that will be used many times, to avoid creating new
 			// functions each time.
-			_this.handleInterceptedAttributesCall_ = _this.handleInterceptedAttributesCall_.bind(_this);
-			_this.handleInterceptedCloseCall_ = _this.handleInterceptedCloseCall_.bind(_this);
-			_this.handleInterceptedOpenCall_ = _this.handleInterceptedOpenCall_.bind(_this);
-			_this.handleChildrenCaptured_ = _this.handleChildrenCaptured_.bind(_this);
-			_this.handleChildRender_ = _this.handleChildRender_.bind(_this);
 			_this.renderInsidePatchDontSkip_ = _this.renderInsidePatchDontSkip_.bind(_this);
+
+			if (!_this.component_.constructor.SYNC_UPDATES_MERGED) {
+				// If the component is being updated synchronously we'll just reuse the
+				// `handleRendererStateKeyChanged_` function from `ComponentRenderer`.
+				_this.component_.on('stateKeyChanged', _this.handleStateKeyChanged_.bind(_this));
+			}
 			return _this;
 		}
 
@@ -1827,7 +1861,7 @@
 		}, {
 			key: 'buildShouldUpdateArgs_',
 			value: function buildShouldUpdateArgs_() {
-				return [this.changes_];
+				return [this.changes_ || {}];
 			}
 
 			/**
@@ -1838,7 +1872,7 @@
 		}, {
 			key: 'clearChanges_',
 			value: function clearChanges_() {
-				this.changes_ = {};
+				this.changes_ = null;
 			}
 
 			/**
@@ -1857,18 +1891,56 @@
 					delete owner.components[ref];
 				}
 
-				for (var i = 0; i < this.childComponents_.length; i++) {
-					var child = this.childComponents_[i];
-					if (!child.isDisposed()) {
-						child.element = null;
-						child.dispose();
+				if (this.childComponents_) {
+					for (var i = 0; i < this.childComponents_.length; i++) {
+						var child = this.childComponents_[i];
+						if (!child.isDisposed()) {
+							child.element = null;
+							child.dispose();
+						}
 					}
+					this.childComponents_ = null;
 				}
-				this.childComponents_ = null;
 			}
 
 			/**
 	   * Removes the most recent component from the queue of rendering components.
+	   */
+
+		}, {
+			key: 'generateKey_',
+
+
+			/**
+	   * Generates a key for the next element to be rendered.
+	   * @param {?string} The key originally passed to the element.
+	   * @return {?string}
+	   * @protected
+	   */
+			value: function generateKey_(key) {
+				var currComp = IncrementalDomRenderer.getComponentBeingRendered();
+				var currRenderer = currComp.getRenderer();
+				if (!currRenderer.rootElementReached_ && currRenderer.config_.key) {
+					return currRenderer.config_.key;
+				}
+				return key;
+			}
+
+			/**
+	   * Gets this renderer's current child components.
+	   * @return {!Array<!Component>}
+	   */
+
+		}, {
+			key: 'getChildComponents',
+			value: function getChildComponents() {
+				this.childComponents_ = this.childComponents_ || [];
+				return this.childComponents_;
+			}
+
+			/**
+	   * Gets the component being currently rendered via `IncrementalDomRenderer`.
+	   * @return {Component}
 	   */
 
 		}, {
@@ -1953,21 +2025,24 @@
 				}
 
 				var ref = this.getRef_(config);
-				var data = IncrementalDomRenderer.getCurrentData();
-				var comp;
+				var comp = void 0;
 				if ((0, _metal.isDef)(ref)) {
 					comp = this.match_(owner.components[ref], Ctor, config);
 					owner.addSubComponent(ref, comp);
 					owner.refs[ref] = comp;
-				} else if ((0, _metal.isDef)(config.key)) {
-					comp = this.match_(data.prevComps.keys[config.key], Ctor, config);
-					data.currComps.keys[config.key] = comp;
 				} else {
-					var type = (0, _metal.getUid)(Ctor, true);
-					data.currComps.order[type] = data.currComps.order[type] || [];
-					var order = data.currComps.order[type];
-					comp = this.match_((data.prevComps.order[type] || [])[order.length], Ctor, config);
-					order.push(comp);
+					var data = IncrementalDomRenderer.getCurrentData();
+					var key = config.key;
+					if (!(0, _metal.isDef)(key)) {
+						var type = (0, _metal.getUid)(Ctor, true);
+						data.currCount = data.currCount || {};
+						data.currCount[type] = data.currCount[type] || 0;
+						key = '__METAL_IC__' + type + '_' + data.currCount[type];
+						data.currCount[type]++;
+					}
+					comp = this.match_(data.prevComps ? data.prevComps[key] : null, Ctor, config);
+					data.currComps = data.currComps || {};
+					data.currComps[key] = comp;
 				}
 
 				return comp;
@@ -1995,18 +2070,6 @@
 			}
 
 			/**
-	   * Handles the `attached` listener. Stores attach data.
-	   * @param {!Object} data
-	   * @protected
-	   */
-
-		}, {
-			key: 'handleAttached_',
-			value: function handleAttached_(data) {
-				this.attachData_ = data;
-			}
-
-			/**
 	   * Handles the event of children having finished being captured.
 	   * @param {!Object} The captured children in tree format.
 	   * @protected
@@ -2015,9 +2078,9 @@
 		}, {
 			key: 'handleChildrenCaptured_',
 			value: function handleChildrenCaptured_(tree) {
-				var _componentToRender_ = this.componentToRender_;
-				var props = _componentToRender_.props;
-				var tag = _componentToRender_.tag;
+				var _componentToRender_ = this.componentToRender_,
+				    props = _componentToRender_.props,
+				    tag = _componentToRender_.tag;
 
 				props.children = this.buildChildren_(tree.props.children);
 				this.componentToRender_ = null;
@@ -2038,51 +2101,15 @@
 			value: function handleChildRender_(node) {
 				if (node.tag && _IncrementalDomUtils2.default.isComponentTag(node.tag)) {
 					node.props.children = this.buildChildren_(node.props.children);
-					this.renderFromTag_(node.tag, node.props);
+					var owner = _IncrementalDomChildren2.default.getOwner(node);
+					this.renderFromTag_(node.tag, node.props, owner);
 					return true;
 				}
 			}
 
 			/**
-	   * @inheritDoc
-	   */
-
-		}, {
-			key: 'handleDataManagerCreated_',
-			value: function handleDataManagerCreated_() {
-				_get(IncrementalDomRenderer.prototype.__proto__ || Object.getPrototypeOf(IncrementalDomRenderer.prototype), 'handleDataManagerCreated_', this).call(this);
-
-				var manager = this.component_.getDataManager();
-				if (!this.component_.constructor.SYNC_UPDATES_MERGED) {
-					// If the component is being updated synchronously we'll just reuse the
-					// `handleComponentRendererStateKeyChanged_` function from
-					// `ComponentRenderer`.
-					manager.on('dataPropChanged', this.handleDataPropChanged_.bind(this));
-				}
-
-				manager.add('children', {
-					validator: Array.isArray,
-					value: emptyChildren_
-				}, this.config_.children || emptyChildren_);
-			}
-
-			/**
-	   * Handles the `dataPropChanged` event. Stores data that has changed since the
-	   * last render.
-	   * @param {!Object} data
-	   * @protected
-	   */
-
-		}, {
-			key: 'handleDataPropChanged_',
-			value: function handleDataPropChanged_(data) {
-				this.changes_[data.key] = data;
-			}
-
-			/**
 	   * Handles an intercepted call to the attributes default handler from
 	   * incremental dom.
-	   * @param {!function()} originalFn The original function before interception.
 	   * @param {!Element} element
 	   * @param {string} name
 	   * @param {*} value
@@ -2091,7 +2118,7 @@
 
 		}, {
 			key: 'handleInterceptedAttributesCall_',
-			value: function handleInterceptedAttributesCall_(originalFn, element, name, value) {
+			value: function handleInterceptedAttributesCall_(element, name, value) {
 				var eventName = this.getEventFromListenerAttr_(name);
 				if (eventName) {
 					this.attachEvent_(element, name, eventName, value);
@@ -2128,38 +2155,20 @@
 						element.removeAttribute(name);
 					}
 				} else {
-					originalFn(element, name, value);
+					_IncrementalDomAop2.default.getOriginalFn('attributes')(element, name, value);
 				}
-			}
-
-			/**
-	   * Handles an intercepted call to the `elementClose` function from incremental
-	   * dom.
-	   * @param {!function()} originalFn The original function before interception.
-	   * @param {string} tag
-	   * @protected
-	   */
-
-		}, {
-			key: 'handleInterceptedCloseCall_',
-			value: function handleInterceptedCloseCall_(originalFn, tag) {
-				this.emit(IncrementalDomRenderer.ELEMENT_CLOSED, { tag: tag });
-				var element = originalFn(tag);
-				this.resetData_(_metalDom.domData.get(element).incDomData_);
-				return element;
 			}
 
 			/**
 	   * Handles an intercepted call to the `elementOpen` function from incremental
 	   * dom.
-	   * @param {!function()} originalFn The original function before interception.
 	   * @param {string} tag
 	   * @protected
 	   */
 
 		}, {
 			key: 'handleInterceptedOpenCall_',
-			value: function handleInterceptedOpenCall_(originalFn, tag) {
+			value: function handleInterceptedOpenCall_(tag) {
 				if (_IncrementalDomUtils2.default.isComponentTag(tag)) {
 					return this.handleSubComponentCall_.apply(this, arguments);
 				} else {
@@ -2177,65 +2186,75 @@
 	   */
 
 		}, {
-			key: 'handleManagerDataPropChanged_',
-			value: function handleManagerDataPropChanged_(data) {
-				this.handleDataPropChanged_(data);
-				_get(IncrementalDomRenderer.prototype.__proto__ || Object.getPrototypeOf(IncrementalDomRenderer.prototype), 'handleManagerDataPropChanged_', this).call(this, data);
+			key: 'handleRendererStateKeyChanged_',
+			value: function handleRendererStateKeyChanged_(data) {
+				this.handleStateKeyChanged_(data);
+				_get(IncrementalDomRenderer.prototype.__proto__ || Object.getPrototypeOf(IncrementalDomRenderer.prototype), 'handleRendererStateKeyChanged_', this).call(this, data);
 			}
 
 			/**
 	   * Handles an intercepted call to the `elementOpen` function from incremental
 	   * dom, done for a regular element. Adds any inline listeners found on the
 	   * first render and makes sure that component root elements are always reused.
-	   * @param {!function()} originalFn The original function before interception.
 	   * @protected
 	   */
 
 		}, {
 			key: 'handleRegularCall_',
-			value: function handleRegularCall_(originalFn) {
-				for (var _len = arguments.length, args = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-					args[_key - 1] = arguments[_key];
+			value: function handleRegularCall_() {
+				for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+					args[_key] = arguments[_key];
 				}
 
-				this.emit(IncrementalDomRenderer.ELEMENT_OPENED, { args: args });
+				args[1] = this.generateKey_(args[1]);
 				var currComp = IncrementalDomRenderer.getComponentBeingRendered();
 				var currRenderer = currComp.getRenderer();
 				if (!currRenderer.rootElementReached_) {
-					if (currRenderer.config_.key) {
-						args[1] = currRenderer.config_.key;
-					}
-					var elementClasses = currComp.getDataManager().get('elementClasses');
+					var elementClasses = currComp.getDataManager().get(currComp, 'elementClasses');
 					if (elementClasses) {
 						this.addElementClasses_(elementClasses, args);
 					}
 				}
 
-				var node = originalFn.apply(null, args);
+				var node = _IncrementalDomAop2.default.getOriginalFn('elementOpen').apply(null, args);
+				this.resetNodeData_(node);
 				this.attachDecoratedListeners_(node, args);
 				this.updateElementIfNotReached_(node);
 
-				var config = _IncrementalDomUtils2.default.buildConfigFromCall(args);
-				if ((0, _metal.isDefAndNotNull)(config.ref)) {
+				var ref = node.getAttribute('ref');
+				if ((0, _metal.isDefAndNotNull)(ref)) {
 					var owner = _IncrementalDomChildren2.default.getCurrentOwner() || this;
-					owner.getComponent().refs[config.ref] = node;
+					owner.getComponent().refs[ref] = node;
 				}
 				return node;
+			}
+
+			/**
+	   * Handles the `stateKeyChanged` event. Stores data that has changed since the
+	   * last render.
+	   * @param {!Object} data
+	   * @protected
+	   */
+
+		}, {
+			key: 'handleStateKeyChanged_',
+			value: function handleStateKeyChanged_(data) {
+				this.changes_ = this.changes_ || {};
+				this.changes_[data.key] = data;
 			}
 
 			/**
 	   * Handles an intercepted call to the `elementOpen` function from incremental
 	   * dom, done for a sub component element. Creates and updates the appropriate
 	   * sub component.
-	   * @param {!function()} originalFn The original function before interception.
 	   * @protected
 	   */
 
 		}, {
 			key: 'handleSubComponentCall_',
-			value: function handleSubComponentCall_(originalFn) {
-				for (var _len2 = arguments.length, args = Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {
-					args[_key2 - 1] = arguments[_key2];
+			value: function handleSubComponentCall_() {
+				for (var _len2 = arguments.length, args = Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+					args[_key2] = arguments[_key2];
 				}
 
 				var props = _IncrementalDomUtils2.default.buildConfigFromCall(args);
@@ -2255,7 +2274,7 @@
 		}, {
 			key: 'hasDataChanged_',
 			value: function hasDataChanged_() {
-				return Object.keys(this.changes_).length > 0;
+				return this.changes_ && Object.keys(this.changes_).length > 0;
 			}
 
 			/**
@@ -2268,9 +2287,8 @@
 			value: function intercept_() {
 				_IncrementalDomAop2.default.startInterception({
 					attributes: this.handleInterceptedAttributesCall_,
-					elementClose: this.handleInterceptedCloseCall_,
 					elementOpen: this.handleInterceptedOpenCall_
-				});
+				}, this);
 			}
 
 			/**
@@ -2316,7 +2334,7 @@
 				}
 				if (comp.wasRendered) {
 					comp.getRenderer().startSkipUpdates();
-					comp.getDataManager().replaceNonInternal(config);
+					comp.getDataManager().replaceNonInternal(comp, config);
 					comp.getRenderer().stopSkipUpdates();
 				}
 				comp.getRenderer().config_ = config;
@@ -2331,6 +2349,7 @@
 		}, {
 			key: 'patch',
 			value: function patch() {
+				this.isPatching_ = true;
 				if (!this.component_.element && this.parent_) {
 					// If the component has no content but was rendered from another component,
 					// we'll need to patch this parent to make sure that any new content will
@@ -2344,12 +2363,14 @@
 					IncrementalDOM.patch(tempParent, this.renderInsidePatchDontSkip_);
 					(0, _metalDom.exitDocument)(this.component_.element);
 					if (this.component_.element && this.component_.inDocument) {
-						this.component_.renderElement_(this.attachData_.parent, this.attachData_.sibling);
+						var attachData = this.component_.getAttachData();
+						this.component_.renderElement_(attachData.parent, attachData.sibling);
 					}
 				} else {
 					var element = this.component_.element;
 					IncrementalDOM.patchOuter(element, this.renderInsidePatchDontSkip_);
 				}
+				this.isPatching_ = false;
 			}
 
 			/**
@@ -2412,7 +2433,7 @@
 	   */
 			value: function renderChild(child) {
 				this.intercept_();
-				_IncrementalDomChildren2.default.render(child, this.handleChildRender_);
+				_IncrementalDomChildren2.default.render(child, this.handleChildRender_, this);
 				_IncrementalDomAop2.default.stopInterception();
 			}
 
@@ -2420,14 +2441,15 @@
 	   * Renders the contents for the given tag.
 	   * @param {!function()|string} tag
 	   * @param {!Object} config
+	   * @param {ComponentRenderer=} opt_owner
 	   * @protected
 	   */
 
 		}, {
 			key: 'renderFromTag_',
-			value: function renderFromTag_(tag, config) {
+			value: function renderFromTag_(tag, config, opt_owner) {
 				if ((0, _metal.isString)(tag) || tag.prototype.getRenderer) {
-					var comp = this.renderSubComponent_(tag, config);
+					var comp = this.renderSubComponent_(tag, config, opt_owner);
 					this.updateElementIfNotReached_(comp.element);
 					return comp.element;
 				} else {
@@ -2481,8 +2503,10 @@
 				IncrementalDomRenderer.startedRenderingComponent(this.component_);
 				this.clearChanges_();
 				this.rootElementReached_ = false;
-				_IncrementalDomUnusedComponents2.default.schedule(this.childComponents_);
-				this.childComponents_ = [];
+				if (this.childComponents_) {
+					_IncrementalDomUnusedComponents2.default.schedule(this.childComponents_);
+					this.childComponents_ = null;
+				}
 				this.component_.refs = {};
 				this.intercept_();
 				this.renderIncDom();
@@ -2490,7 +2514,7 @@
 				if (!this.rootElementReached_) {
 					this.component_.element = null;
 				}
-				this.emit('rendered', !this.isRendered_);
+				this.handleRendered_();
 				IncrementalDomRenderer.finishedRenderingComponent();
 				this.resetData_(this.incDomData_);
 			}
@@ -2502,14 +2526,15 @@
 	   * updated instead.
 	   * @param {string|!function()} tagOrCtor The tag name or constructor function.
 	   * @param {!Object} config The config object for the sub component.
+	   * @param {ComponentRenderer=} opt_owner
 	   * @return {!Component} The updated sub component.
 	   * @protected
 	   */
 
 		}, {
 			key: 'renderSubComponent_',
-			value: function renderSubComponent_(tagOrCtor, config) {
-				var ownerRenderer = _IncrementalDomChildren2.default.getCurrentOwner() || this;
+			value: function renderSubComponent_(tagOrCtor, config, opt_owner) {
+				var ownerRenderer = opt_owner || this;
 				var owner = ownerRenderer.getComponent();
 				var comp = this.getSubComponent_(tagOrCtor, config, owner);
 				this.updateContext_(comp);
@@ -2517,7 +2542,7 @@
 				if (renderer instanceof IncrementalDomRenderer) {
 					var parentComp = IncrementalDomRenderer.getComponentBeingRendered();
 					var parentRenderer = parentComp.getRenderer();
-					parentRenderer.childComponents_.push(comp);
+					parentRenderer.getChildComponents().push(comp);
 					renderer.parent_ = parentComp;
 					renderer.owner_ = owner;
 					if (!config.key && !parentRenderer.rootElementReached_) {
@@ -2544,10 +2569,23 @@
 			key: 'resetData_',
 			value: function resetData_(data) {
 				if (data) {
-					data.prevComps.keys = data.currComps.keys;
-					data.prevComps.order = data.currComps.order;
-					data.currComps.keys = {};
-					data.currComps.order = {};
+					data.prevComps = data.currComps;
+					data.currComps = null;
+					data.currCount = null;
+				}
+			}
+
+			/**
+	   * Resets all data stored in the given node.
+	   * @param {!Element} node
+	   * @protected
+	   */
+
+		}, {
+			key: 'resetNodeData_',
+			value: function resetNodeData_(node) {
+				if (_metalDom.domData.has(node)) {
+					this.resetData_(_metalDom.domData.get(node).incDomData_);
 				}
 			}
 
@@ -2583,7 +2621,7 @@
 		}, {
 			key: 'skipNextChildrenDisposal',
 			value: function skipNextChildrenDisposal() {
-				this.childComponents_ = [];
+				this.childComponents_ = null;
 			}
 
 			/**
@@ -2639,7 +2677,7 @@
 			value: function updateContext_(comp) {
 				var context = comp.context;
 				var parent = IncrementalDomRenderer.getComponentBeingRendered();
-				var childContext = parent.getChildContext ? parent.getChildContext() : {};
+				var childContext = parent.getChildContext ? parent.getChildContext() : null;
 				_metal.object.mixin(context, parent.context, childContext);
 				comp.context = context;
 			}
@@ -2651,12 +2689,6 @@
 					_IncrementalDomUnusedComponents2.default.disposeUnused();
 				}
 			}
-
-			/**
-	   * Gets the component being currently rendered via `IncrementalDomRenderer`.
-	   * @return {Component}
-	   */
-
 		}, {
 			key: 'getComponentBeingRendered',
 			value: function getComponentBeingRendered() {
@@ -2681,16 +2713,7 @@
 				if (renderer.rootElementReached_ && element !== comp.element.parentNode) {
 					obj = _metalDom.domData.get(element);
 				}
-				obj.incDomData_ = obj.incDomData_ || {
-					currComps: {
-						keys: {},
-						order: {}
-					},
-					prevComps: {
-						keys: {},
-						order: {}
-					}
-				};
+				obj.incDomData_ = obj.incDomData_ || {};
 				return obj.incDomData_;
 			}
 		}, {
@@ -2753,10 +2776,6 @@
 	var renderingComponents_ = [];
 	var emptyChildren_ = [];
 
-	// Constants used as event names.
-	IncrementalDomRenderer.ELEMENT_OPENED = 'elementOpened';
-	IncrementalDomRenderer.ELEMENT_CLOSED = 'elementClosed';
-
 	// Regex pattern used to find inline listeners.
 	IncrementalDomRenderer.LISTENER_REGEX = /^(?:on([A-Z]\w+))|(?:data-on(\w+))$/;
 
@@ -2769,12 +2788,12 @@
 
 /***/ },
 
-/***/ 338:
+/***/ 317:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 	/* jshint ignore:start */
 
@@ -4001,7 +4020,7 @@
 
 /***/ },
 
-/***/ 339:
+/***/ 318:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -4011,7 +4030,7 @@
 	});
 	exports.globalEvalStyles = exports.globalEval = exports.features = exports.DomEventHandle = exports.DomEventEmitterProxy = exports.domData = undefined;
 
-	var _dom = __webpack_require__(340);
+	var _dom = __webpack_require__(319);
 
 	Object.keys(_dom).forEach(function (key) {
 	  if (key === "default" || key === "__esModule") return;
@@ -4025,31 +4044,31 @@
 
 	var _dom2 = _interopRequireDefault(_dom);
 
-	var _domData = __webpack_require__(342);
+	var _domData = __webpack_require__(321);
 
 	var _domData2 = _interopRequireDefault(_domData);
 
-	var _DomEventEmitterProxy = __webpack_require__(350);
+	var _DomEventEmitterProxy = __webpack_require__(329);
 
 	var _DomEventEmitterProxy2 = _interopRequireDefault(_DomEventEmitterProxy);
 
-	var _DomEventHandle = __webpack_require__(349);
+	var _DomEventHandle = __webpack_require__(328);
 
 	var _DomEventHandle2 = _interopRequireDefault(_DomEventHandle);
 
-	var _features = __webpack_require__(351);
+	var _features = __webpack_require__(330);
 
 	var _features2 = _interopRequireDefault(_features);
 
-	var _globalEval = __webpack_require__(352);
+	var _globalEval = __webpack_require__(331);
 
 	var _globalEval2 = _interopRequireDefault(_globalEval);
 
-	var _globalEvalStyles = __webpack_require__(353);
+	var _globalEvalStyles = __webpack_require__(332);
 
 	var _globalEvalStyles2 = _interopRequireDefault(_globalEvalStyles);
 
-	__webpack_require__(354);
+	__webpack_require__(333);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -4063,7 +4082,7 @@
 
 /***/ },
 
-/***/ 340:
+/***/ 319:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -4078,7 +4097,7 @@
 	});
 	exports.dom = undefined;
 
-	var _domNamed = __webpack_require__(341);
+	var _domNamed = __webpack_require__(320);
 
 	Object.keys(_domNamed).forEach(function (key) {
 	  if (key === "default" || key === "__esModule") return;
@@ -4099,7 +4118,7 @@
 
 /***/ },
 
-/***/ 341:
+/***/ 320:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -4132,23 +4151,24 @@
 	exports.toggleClasses = toggleClasses;
 	exports.triggerEvent = triggerEvent;
 
-	var _metal = __webpack_require__(326);
+	var _metal = __webpack_require__(305);
 
-	var _domData = __webpack_require__(342);
+	var _domData = __webpack_require__(321);
 
 	var _domData2 = _interopRequireDefault(_domData);
 
-	var _DomDelegatedEventHandle = __webpack_require__(343);
+	var _DomDelegatedEventHandle = __webpack_require__(322);
 
 	var _DomDelegatedEventHandle2 = _interopRequireDefault(_DomDelegatedEventHandle);
 
-	var _DomEventHandle = __webpack_require__(349);
+	var _DomEventHandle = __webpack_require__(328);
 
 	var _DomEventHandle2 = _interopRequireDefault(_DomEventHandle);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var elementsByTag_ = {};
+	var supportCache_ = {};
 	var customEvents = exports.customEvents = {};
 
 	var NEXT_TARGET = '__metal_next_target__';
@@ -4231,8 +4251,7 @@
 	 * @private
 	 */
 	function addElementListener_(element, eventName, listener) {
-		var data = _domData2.default.get(element);
-		addToArr_(data.listeners, eventName, listener);
+		addToArr_(_domData2.default.get(element, 'listeners', {}), eventName, listener);
 	}
 
 	/**
@@ -4245,8 +4264,8 @@
 	 * @private
 	 */
 	function addSelectorListener_(element, eventName, selector, listener) {
-		var data = _domData2.default.get(element);
-		addToArr_(data.delegating[eventName].selectors, selector, listener);
+		var delegatingData = _domData2.default.get(element, 'delegating', {});
+		addToArr_(delegatingData[eventName].selectors, selector, listener);
 	}
 
 	/**
@@ -4271,9 +4290,9 @@
 	 * @private
 	 */
 	function attachDelegateEvent_(element, eventName) {
-		var data = _domData2.default.get(element);
-		if (!data.delegating[eventName]) {
-			data.delegating[eventName] = {
+		var delegatingData = _domData2.default.get(element, 'delegating', {});
+		if (!delegatingData[eventName]) {
+			delegatingData[eventName] = {
 				handle: on(element, eventName, handleDelegateEvent_, !!USE_CAPTURE[eventName]),
 				selectors: {}
 			};
@@ -4743,7 +4762,13 @@
 			}
 			element = elementsByTag_[element];
 		}
-		return 'on' + eventName in element;
+
+		var tag = element.tagName;
+		if (!supportCache_[tag] || !supportCache_[tag].hasOwnProperty(eventName)) {
+			supportCache_[tag] = supportCache_[tag] || {};
+			supportCache_[tag][eventName] = 'on' + eventName in element;
+		}
+		return supportCache_[tag][eventName];
 	}
 
 	/**
@@ -4929,11 +4954,11 @@
 	 * @private
 	 */
 	function triggerMatchedListeners_(container, element, event, defaultFns) {
-		var data = _domData2.default.get(element);
-		var listeners = data.listeners[event.type];
+		var listeners = _domData2.default.get(element, 'listeners', {})[event.type];
 		var ret = triggerListeners_(listeners, event, element, defaultFns);
 
-		var selectorsMap = _domData2.default.get(container).delegating[event.type].selectors;
+		var delegatingData = _domData2.default.get(container, 'delegating', {});
+		var selectorsMap = delegatingData[event.type].selectors;
 		var selectors = Object.keys(selectorsMap);
 		for (var i = 0; i < selectors.length && !event.stoppedImmediate; i++) {
 			if (match(element, selectors[i])) {
@@ -4947,7 +4972,7 @@
 
 /***/ },
 
-/***/ 342:
+/***/ 321:
 /***/ function(module, exports) {
 
 	'use strict';
@@ -4973,16 +4998,34 @@
 			/**
 	   * Gets Metal.js's data for the given element.
 	   * @param {!Element} element
+	   * @param {string=} opt_name Optional property from the data to be returned.
+	   * @param {*} opt_initialVal Optinal value to the set the requested property
+	   *     to if it doesn't exist yet in the data.
 	   * @return {!Object}
 	   */
-			value: function get(element) {
+			value: function get(element, opt_name, opt_initialVal) {
 				if (!element[METAL_DATA]) {
-					element[METAL_DATA] = {
-						delegating: {},
-						listeners: {}
-					};
+					element[METAL_DATA] = {};
 				}
-				return element[METAL_DATA];
+				if (!opt_name) {
+					return element[METAL_DATA];
+				}
+				if (!element[METAL_DATA][opt_name] && opt_initialVal) {
+					element[METAL_DATA][opt_name] = opt_initialVal;
+				}
+				return element[METAL_DATA][opt_name];
+			}
+
+			/**
+	   * Checks if the given element has data stored in it.
+	   * @param {!Element} element
+	   * @return {boolean}
+	   */
+
+		}, {
+			key: 'has',
+			value: function has(element) {
+				return !!element[METAL_DATA];
 			}
 		}]);
 
@@ -4993,7 +5036,7 @@
 
 /***/ },
 
-/***/ 343:
+/***/ 322:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -5004,13 +5047,13 @@
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _metal = __webpack_require__(326);
+	var _metal = __webpack_require__(305);
 
-	var _domData = __webpack_require__(342);
+	var _domData = __webpack_require__(321);
 
 	var _domData2 = _interopRequireDefault(_domData);
 
-	var _metalEvents = __webpack_require__(344);
+	var _metalEvents = __webpack_require__(323);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -5054,9 +5097,10 @@
 		_createClass(DomDelegatedEventHandle, [{
 			key: 'removeListener',
 			value: function removeListener() {
-				var data = _domData2.default.get(this.emitter_);
+				var delegating = _domData2.default.get(this.emitter_, 'delegating', {});
+				var listeners = _domData2.default.get(this.emitter_, 'listeners', {});
 				var selector = this.selector_;
-				var arr = (0, _metal.isString)(selector) ? data.delegating[this.event_].selectors : data.listeners;
+				var arr = (0, _metal.isString)(selector) ? delegating[this.event_].selectors : listeners;
 				var key = (0, _metal.isString)(selector) ? selector : this.event_;
 
 				_metal.array.remove(arr[key] || [], this.listener_);
@@ -5073,7 +5117,7 @@
 
 /***/ },
 
-/***/ 344:
+/***/ 323:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -5083,19 +5127,19 @@
 	});
 	exports.EventHandler = exports.EventHandle = exports.EventEmitterProxy = exports.EventEmitter = undefined;
 
-	var _EventEmitter = __webpack_require__(345);
+	var _EventEmitter = __webpack_require__(324);
 
 	var _EventEmitter2 = _interopRequireDefault(_EventEmitter);
 
-	var _EventEmitterProxy = __webpack_require__(347);
+	var _EventEmitterProxy = __webpack_require__(326);
 
 	var _EventEmitterProxy2 = _interopRequireDefault(_EventEmitterProxy);
 
-	var _EventHandle = __webpack_require__(346);
+	var _EventHandle = __webpack_require__(325);
 
 	var _EventHandle2 = _interopRequireDefault(_EventHandle);
 
-	var _EventHandler = __webpack_require__(348);
+	var _EventHandler = __webpack_require__(327);
 
 	var _EventHandler2 = _interopRequireDefault(_EventHandler);
 
@@ -5109,7 +5153,7 @@
 
 /***/ },
 
-/***/ 345:
+/***/ 324:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -5120,9 +5164,9 @@
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _metal = __webpack_require__(326);
+	var _metal = __webpack_require__(305);
 
-	var _EventHandle = __webpack_require__(346);
+	var _EventHandle = __webpack_require__(325);
 
 	var _EventHandle2 = _interopRequireDefault(_EventHandle);
 
@@ -5134,11 +5178,14 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+	var singleArray_ = [0];
+
 	/**
 	 * EventEmitter utility.
 	 * @constructor
 	 * @extends {Disposable}
 	 */
+
 	var EventEmitter = function (_Disposable) {
 		_inherits(EventEmitter, _Disposable);
 
@@ -5147,20 +5194,18 @@
 
 			/**
 	   * Holds event listeners scoped by event type.
-	   * @type {!Object<string, !Array<!function()>>}
+	   * @type {Object<string, !Array<!function()>>}
 	   * @protected
 	   */
 			var _this = _possibleConstructorReturn(this, (EventEmitter.__proto__ || Object.getPrototypeOf(EventEmitter)).call(this));
 
-			_this.events_ = [];
+			_this.events_ = null;
 
 			/**
-	   * The maximum number of listeners allowed for each event type. If the number
-	   * becomes higher than the max, a warning will be issued.
-	   * @type {number}
-	   * @protected
+	   * Handlers that are triggered when an event is listened to.
+	   * @type {Array}
 	   */
-			_this.maxListeners_ = 10;
+			_this.listenerHandlers_ = null;
 
 			/**
 	   * Configuration option which determines if an event facade should be sent
@@ -5174,27 +5219,52 @@
 		}
 
 		/**
-	  * Adds a listener to the end of the listeners array for the specified events.
-	  * @param {!(Array|string)} events
-	  * @param {!Function} listener
-	  * @param {boolean} opt_default Flag indicating if this listener is a default
-	  *   action for this event. Default actions are run last, and only if no previous
-	  *   listener call `preventDefault()` on the received event facade.
-	  * @return {!EventHandle} Can be used to remove the listener.
+	  * Adds a handler to given holder variable. If the holder doesn't have a
+	  * value yet, it will receive the handler directly. If the holder is an array,
+	  * the value will just be added to it. Otherwise, the holder will be set to a
+	  * new array containing its previous value plus the new handler.
+	  * @param {*} holder
+	  * @param {!function()|Object} handler
+	  * @return {*} The holder's new value.
+	  * @protected
 	  */
 
 
 		_createClass(EventEmitter, [{
+			key: 'addHandler_',
+			value: function addHandler_(holder, handler) {
+				if (!holder) {
+					holder = handler;
+				} else {
+					if (!Array.isArray(holder)) {
+						holder = [holder];
+					}
+					holder.push(handler);
+				}
+				return holder;
+			}
+
+			/**
+	   * Adds a listener to the end of the listeners array for the specified events.
+	   * @param {!(Array|string)} event
+	   * @param {!Function} listener
+	   * @param {boolean} opt_default Flag indicating if this listener is a default
+	   *   action for this event. Default actions are run last, and only if no previous
+	   *   listener call `preventDefault()` on the received event facade.
+	   * @return {!EventHandle} Can be used to remove the listener.
+	   */
+
+		}, {
 			key: 'addListener',
-			value: function addListener(events, listener, opt_default) {
+			value: function addListener(event, listener, opt_default) {
 				this.validateListener_(listener);
 
-				events = this.normalizeEvents_(events);
+				var events = this.toEventsArray_(event);
 				for (var i = 0; i < events.length; i++) {
 					this.addSingleListener_(events[i], listener, opt_default);
 				}
 
-				return new _EventHandle2.default(this, events, listener);
+				return new _EventHandle2.default(this, event, listener);
 			}
 
 			/**
@@ -5213,22 +5283,16 @@
 		}, {
 			key: 'addSingleListener_',
 			value: function addSingleListener_(event, listener, opt_default, opt_origin) {
-				this.emit('newListener', event, listener);
-
-				if (!this.events_[event]) {
-					this.events_[event] = [];
+				this.runListenerHandlers_(event);
+				if (opt_default || opt_origin) {
+					listener = {
+						default: opt_default,
+						fn: listener,
+						origin: opt_origin
+					};
 				}
-				this.events_[event].push({
-					default: opt_default,
-					fn: listener,
-					origin: opt_origin
-				});
-
-				var listeners = this.events_[event];
-				if (listeners.length > this.maxListeners_ && !listeners.warned) {
-					console.warn('Possible EventEmitter memory leak detected. %d listeners added ' + 'for event %s. Use emitter.setMaxListeners() to increase limit.', listeners.length, event);
-					listeners.warned = true;
-				}
+				this.events_ = this.events_ || {};
+				this.events_[event] = this.addHandler_(this.events_[event], listener);
 			}
 
 			/**
@@ -5239,7 +5303,7 @@
 		}, {
 			key: 'disposeInternal',
 			value: function disposeInternal() {
-				this.events_ = [];
+				this.events_ = null;
 			}
 
 			/**
@@ -5252,9 +5316,12 @@
 		}, {
 			key: 'emit',
 			value: function emit(event) {
-				var args = _metal.array.slice(arguments, 1);
-				var listeners = (this.events_[event] || []).concat();
+				var listeners = toArray(this.getRawListeners_(event)).concat();
+				if (listeners.length === 0) {
+					return false;
+				}
 
+				var args = _metal.array.slice(arguments, 1);
 				var facade;
 				if (this.getShouldUseFacade()) {
 					facade = {
@@ -5269,23 +5336,33 @@
 
 				var defaultListeners = [];
 				for (var i = 0; i < listeners.length; i++) {
+					var listener = listeners[i].fn || listeners[i];
 					if (listeners[i].default) {
-						defaultListeners.push(listeners[i]);
+						defaultListeners.push(listener);
 					} else {
-						listeners[i].fn.apply(this, args);
+						listener.apply(this, args);
 					}
 				}
 				if (!facade || !facade.preventedDefault) {
 					for (var j = 0; j < defaultListeners.length; j++) {
-						defaultListeners[j].fn.apply(this, args);
+						defaultListeners[j].apply(this, args);
 					}
 				}
 
-				if (event !== '*') {
-					this.emit.apply(this, ['*', event].concat(args));
-				}
+				return true;
+			}
 
-				return listeners.length > 0;
+			/**
+	   * Gets the listener objects for the given event, if there are any.
+	   * @param {string} event
+	   * @return {Array}
+	   * @protected
+	   */
+
+		}, {
+			key: 'getRawListeners_',
+			value: function getRawListeners_(event) {
+				return this.events_ && this.events_[event];
 			}
 
 			/**
@@ -5310,8 +5387,8 @@
 		}, {
 			key: 'listeners',
 			value: function listeners(event) {
-				return (this.events_[event] || []).map(function (listener) {
-					return listener.fn;
+				return toArray(this.getRawListeners_(event)).map(function (listener) {
+					return listener.fn ? listener.fn : listener;
 				});
 			}
 
@@ -5319,7 +5396,7 @@
 	   * Adds a listener that will be invoked a fixed number of times for the
 	   * events. After each event is triggered the specified amount of times, the
 	   * listener is removed for it.
-	   * @param {!(Array|string)} events
+	   * @param {!(Array|string)} event
 	   * @param {number} amount The amount of times this event should be listened
 	   * to.
 	   * @param {!Function} listener
@@ -5328,13 +5405,13 @@
 
 		}, {
 			key: 'many',
-			value: function many(events, amount, listener) {
-				events = this.normalizeEvents_(events);
+			value: function many(event, amount, listener) {
+				var events = this.toEventsArray_(event);
 				for (var i = 0; i < events.length; i++) {
 					this.many_(events[i], amount, listener);
 				}
 
-				return new _EventHandle2.default(this, events, listener);
+				return new _EventHandle2.default(this, event, listener);
 			}
 
 			/**
@@ -5379,20 +5456,8 @@
 		}, {
 			key: 'matchesListener_',
 			value: function matchesListener_(listenerObj, listener) {
-				return listenerObj.fn === listener || listenerObj.origin && listenerObj.origin === listener;
-			}
-
-			/**
-	   * Converts the parameter to an array if only one event is given.
-	   * @param  {!(Array|string)} events
-	   * @return {!Array}
-	   * @protected
-	   */
-
-		}, {
-			key: 'normalizeEvents_',
-			value: function normalizeEvents_(events) {
-				return (0, _metal.isString)(events) ? [events] : events;
+				var fn = listenerObj.fn || listenerObj;
+				return fn === listener || listenerObj.origin && listenerObj.origin === listener;
 			}
 
 			/**
@@ -5405,13 +5470,15 @@
 
 		}, {
 			key: 'off',
-			value: function off(events, listener) {
+			value: function off(event, listener) {
 				this.validateListener_(listener);
+				if (!this.events_) {
+					return this;
+				}
 
-				events = this.normalizeEvents_(events);
+				var events = this.toEventsArray_(event);
 				for (var i = 0; i < events.length; i++) {
-					var listenerObjs = this.events_[events[i]] || [];
-					this.removeMatchingListenerObjs_(listenerObjs, listener);
+					this.events_[events[i]] = this.removeMatchingListenerObjs_(toArray(this.events_[events[i]]), listener);
 				}
 
 				return this;
@@ -5428,6 +5495,18 @@
 			key: 'on',
 			value: function on() {
 				return this.addListener.apply(this, arguments);
+			}
+
+			/**
+	   * Adds handler that gets triggered when an event is listened to on this
+	   * instance.
+	   * @param {!function()}
+	   */
+
+		}, {
+			key: 'onListener',
+			value: function onListener(handler) {
+				this.listenerHandlers_ = this.addHandler_(this.listenerHandlers_, handler);
 			}
 
 			/**
@@ -5455,13 +5534,15 @@
 		}, {
 			key: 'removeAllListeners',
 			value: function removeAllListeners(opt_events) {
-				if (opt_events) {
-					var events = this.normalizeEvents_(opt_events);
-					for (var i = 0; i < events.length; i++) {
-						this.events_[events[i]] = null;
+				if (this.events_) {
+					if (opt_events) {
+						var events = this.toEventsArray_(opt_events);
+						for (var i = 0; i < events.length; i++) {
+							this.events_[events[i]] = null;
+						}
+					} else {
+						this.events_ = null;
 					}
-				} else {
-					this.events_ = {};
 				}
 				return this;
 			}
@@ -5469,8 +5550,9 @@
 			/**
 	   * Removes all listener objects from the given array that match the given
 	   * listener function.
-	   * @param {!Array.<Object>} listenerObjs
+	   * @param {Array.<Object>} listenerObjs
 	   * @param {!Function} listener
+	   * @return {Array.<Object>|Object} The new listeners array for this event.
 	   * @protected
 	   */
 
@@ -5482,6 +5564,7 @@
 						listenerObjs.splice(i, 1);
 					}
 				}
+				return listenerObjs.length > 0 ? listenerObjs : null;
 			}
 
 			/**
@@ -5499,19 +5582,21 @@
 			}
 
 			/**
-	   * By default EventEmitters will print a warning if more than 10 listeners
-	   * are added for a particular event. This is a useful default which helps
-	   * finding memory leaks. Obviously not all Emitters should be limited to 10.
-	   * This function allows that to be increased. Set to zero for unlimited.
-	   * @param {number} max The maximum number of listeners.
-	   * @return {!Object} Returns emitter, so calls can be chained.
+	   * Runs the handlers when an event is listened to.
+	   * @param {string} event
+	   * @protected
 	   */
 
 		}, {
-			key: 'setMaxListeners',
-			value: function setMaxListeners(max) {
-				this.maxListeners_ = max;
-				return this;
+			key: 'runListenerHandlers_',
+			value: function runListenerHandlers_(event) {
+				var handlers = this.listenerHandlers_;
+				if (handlers) {
+					handlers = toArray(handlers);
+					for (var i = 0; i < handlers.length; i++) {
+						handlers[i](event);
+					}
+				}
 			}
 
 			/**
@@ -5527,6 +5612,25 @@
 			value: function setShouldUseFacade(shouldUseFacade) {
 				this.shouldUseFacade_ = shouldUseFacade;
 				return this;
+			}
+
+			/**
+	   * Converts the parameter to an array if only one event is given. Reuses the
+	   * same array each time this conversion is done, to avoid using more memory
+	   * than necessary.
+	   * @param  {!(Array|string)} events
+	   * @return {!Array}
+	   * @protected
+	   */
+
+		}, {
+			key: 'toEventsArray_',
+			value: function toEventsArray_(events) {
+				if ((0, _metal.isString)(events)) {
+					singleArray_[0] = events;
+					events = singleArray_;
+				}
+				return events;
 			}
 
 			/**
@@ -5547,11 +5651,16 @@
 		return EventEmitter;
 	}(_metal.Disposable);
 
+	function toArray(val) {
+		val = val || [];
+		return Array.isArray(val) ? val : [val];
+	}
+
 	exports.default = EventEmitter;
 
 /***/ },
 
-/***/ 346:
+/***/ 325:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -5562,7 +5671,7 @@
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _metal = __webpack_require__(326);
+	var _metal = __webpack_require__(305);
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -5647,7 +5756,7 @@
 
 /***/ },
 
-/***/ 347:
+/***/ 326:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -5658,7 +5767,7 @@
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _metal = __webpack_require__(326);
+	var _metal = __webpack_require__(305);
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -5693,9 +5802,7 @@
 	   */
 			var _this = _possibleConstructorReturn(this, (EventEmitterProxy.__proto__ || Object.getPrototypeOf(EventEmitterProxy)).call(this));
 
-			_this.blacklist_ = _metal.object.mixin({
-				newListener: true
-			}, opt_blacklist);
+			_this.blacklist_ = opt_blacklist;
 
 			/**
 	   * The origin emitter. This emitter's events will be proxied through the
@@ -5709,17 +5816,17 @@
 	   * A list of events that are pending to be listened by an actual origin
 	   * emitter. Events are stored here when the origin doesn't exist, so they
 	   * can be set on a new origin when one is set.
-	   * @type {!Array}
+	   * @type {Array}
 	   * @protected
 	   */
-			_this.pendingEvents_ = [];
+			_this.pendingEvents_ = null;
 
 			/**
 	   * Holds a map of events from the origin emitter that are already being proxied.
 	   * @type {Object<string, !EventHandle>}
 	   * @protected
 	   */
-			_this.proxiedEvents_ = {};
+			_this.proxiedEvents_ = null;
 
 			/**
 	   * The target emitter. This emitter will emit all events that come from
@@ -5815,12 +5922,14 @@
 		}, {
 			key: 'removeListeners_',
 			value: function removeListeners_() {
-				var events = Object.keys(this.proxiedEvents_);
-				for (var i = 0; i < events.length; i++) {
-					this.proxiedEvents_[events[i]].removeListener();
+				if (this.proxiedEvents_) {
+					var events = Object.keys(this.proxiedEvents_);
+					for (var i = 0; i < events.length; i++) {
+						this.proxiedEvents_[events[i]].removeListener();
+					}
+					this.proxiedEvents_ = null;
 				}
-				this.proxiedEvents_ = {};
-				this.pendingEvents_ = [];
+				this.pendingEvents_ = null;
 			}
 
 			/**
@@ -5835,12 +5944,14 @@
 			value: function setOriginEmitter(originEmitter) {
 				var _this2 = this;
 
-				var events = this.originEmitter_ ? Object.keys(this.proxiedEvents_) : this.pendingEvents_;
-				this.removeListeners_();
+				var events = this.originEmitter_ && this.proxiedEvents_ ? Object.keys(this.proxiedEvents_) : this.pendingEvents_;
 				this.originEmitter_ = originEmitter;
-				events.forEach(function (event) {
-					return _this2.proxyEvent(event);
-				});
+				if (events) {
+					this.removeListeners_();
+					events.forEach(function (event) {
+						return _this2.proxyEvent(event);
+					});
+				}
 			}
 
 			/**
@@ -5856,10 +5967,10 @@
 				if (this.whitelist_ && !this.whitelist_[event]) {
 					return false;
 				}
-				if (this.blacklist_[event]) {
+				if (this.blacklist_ && this.blacklist_[event]) {
 					return false;
 				}
-				return !this.proxiedEvents_[event];
+				return !this.proxiedEvents_ || !this.proxiedEvents_[event];
 			}
 
 			/**
@@ -5870,7 +5981,7 @@
 		}, {
 			key: 'startProxy_',
 			value: function startProxy_() {
-				this.targetEmitter_.on('newListener', this.proxyEvent.bind(this));
+				this.targetEmitter_.onListener(this.proxyEvent.bind(this));
 			}
 
 			/**
@@ -5884,8 +5995,10 @@
 			key: 'tryToAddListener_',
 			value: function tryToAddListener_(event) {
 				if (this.originEmitter_) {
+					this.proxiedEvents_ = this.proxiedEvents_ || {};
 					this.proxiedEvents_[event] = this.addListenerForEvent_(event);
 				} else {
+					this.pendingEvents_ = this.pendingEvents_ || [];
 					this.pendingEvents_.push(event);
 				}
 			}
@@ -5898,7 +6011,7 @@
 
 /***/ },
 
-/***/ 348:
+/***/ 327:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -5909,7 +6022,7 @@
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _metal = __webpack_require__(326);
+	var _metal = __webpack_require__(305);
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -5989,7 +6102,7 @@
 
 /***/ },
 
-/***/ 349:
+/***/ 328:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -6000,7 +6113,7 @@
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _metalEvents = __webpack_require__(344);
+	var _metalEvents = __webpack_require__(323);
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -6053,7 +6166,7 @@
 
 /***/ },
 
-/***/ 350:
+/***/ 329:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -6066,9 +6179,9 @@
 
 	var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-	var _dom = __webpack_require__(340);
+	var _dom = __webpack_require__(319);
 
-	var _metalEvents = __webpack_require__(344);
+	var _metalEvents = __webpack_require__(323);
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -6166,7 +6279,7 @@
 
 /***/ },
 
-/***/ 351:
+/***/ 330:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -6177,9 +6290,9 @@
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _dom = __webpack_require__(340);
+	var _dom = __webpack_require__(319);
 
-	var _metal = __webpack_require__(326);
+	var _metal = __webpack_require__(305);
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -6261,7 +6374,7 @@
 
 /***/ },
 
-/***/ 352:
+/***/ 331:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -6272,9 +6385,9 @@
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _metal = __webpack_require__(326);
+	var _metal = __webpack_require__(305);
 
-	var _dom = __webpack_require__(340);
+	var _dom = __webpack_require__(319);
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -6419,7 +6532,7 @@
 
 /***/ },
 
-/***/ 353:
+/***/ 332:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -6430,9 +6543,9 @@
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _metal = __webpack_require__(326);
+	var _metal = __webpack_require__(305);
 
-	var _dom = __webpack_require__(340);
+	var _dom = __webpack_require__(319);
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -6559,14 +6672,14 @@
 
 /***/ },
 
-/***/ 354:
+/***/ 333:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var _dom = __webpack_require__(340);
+	var _dom = __webpack_require__(319);
 
-	var _features = __webpack_require__(351);
+	var _features = __webpack_require__(330);
 
 	var _features2 = _interopRequireDefault(_features);
 
@@ -6612,7 +6725,7 @@
 
 /***/ },
 
-/***/ 355:
+/***/ 334:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -6622,19 +6735,19 @@
 	});
 	exports.ComponentRenderer = exports.ComponentRegistry = exports.ComponentDataManager = exports.Component = undefined;
 
-	var _Component = __webpack_require__(356);
+	var _Component = __webpack_require__(335);
 
 	var _Component2 = _interopRequireDefault(_Component);
 
-	var _ComponentDataManager = __webpack_require__(357);
+	var _ComponentDataManager = __webpack_require__(336);
 
 	var _ComponentDataManager2 = _interopRequireDefault(_ComponentDataManager);
 
-	var _ComponentRegistry = __webpack_require__(363);
+	var _ComponentRegistry = __webpack_require__(342);
 
 	var _ComponentRegistry2 = _interopRequireDefault(_ComponentRegistry);
 
-	var _ComponentRenderer = __webpack_require__(362);
+	var _ComponentRenderer = __webpack_require__(341);
 
 	var _ComponentRenderer2 = _interopRequireDefault(_ComponentRenderer);
 
@@ -6648,7 +6761,7 @@
 
 /***/ },
 
-/***/ 356:
+/***/ 335:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -6661,19 +6774,19 @@
 
 	var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-	var _metal = __webpack_require__(326);
+	var _metal = __webpack_require__(305);
 
-	var _metalDom = __webpack_require__(339);
+	var _metalDom = __webpack_require__(318);
 
-	var _ComponentDataManager = __webpack_require__(357);
+	var _ComponentDataManager = __webpack_require__(336);
 
 	var _ComponentDataManager2 = _interopRequireDefault(_ComponentDataManager);
 
-	var _ComponentRenderer = __webpack_require__(362);
+	var _ComponentRenderer = __webpack_require__(341);
 
 	var _ComponentRenderer2 = _interopRequireDefault(_ComponentRenderer);
 
-	var _metalEvents = __webpack_require__(344);
+	var _metalEvents = __webpack_require__(323);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -6744,35 +6857,27 @@
 			_classCallCheck(this, Component);
 
 			/**
-	   * All listeners that were attached until the `DomEventEmitterProxy` instance
-	   * was created.
-	   * @type {!Object<string, bool>}
-	   * @protected
-	   */
-			var _this = _possibleConstructorReturn(this, (Component.__proto__ || Object.getPrototypeOf(Component)).call(this));
-
-			_this.attachedListeners_ = {};
-
-			/**
 	   * Gets all nested components.
 	   * @type {!Array<!Component>}
 	   */
+			var _this = _possibleConstructorReturn(this, (Component.__proto__ || Object.getPrototypeOf(Component)).call(this));
+
 			_this.components = {};
 
 			/**
 	   * Instance of `DomEventEmitterProxy` which proxies events from the component's
 	   * element to the component itself.
-	   * @type {DomEventEmitterProxy}
+	   * @type {!DomEventEmitterProxy}
 	   * @protected
 	   */
-			_this.elementEventProxy_ = null;
+			_this.elementEventProxy_ = new _metalDom.DomEventEmitterProxy(null, _this, proxyBlackList_);
 
 			/**
 	   * The `EventHandler` instance for events attached from the `events` state key.
-	   * @type {!EventHandler}
+	   * @type {EventHandler}
 	   * @protected
 	   */
-			_this.eventsStateKeyHandler_ = new _metalEvents.EventHandler();
+			_this.eventsStateKeyHandler_ = null;
 
 			/**
 	   * Whether the element is in document.
@@ -6801,28 +6906,27 @@
 	   */
 			_this.DEFAULT_ELEMENT_PARENT = document.body;
 
+			(0, _metal.mergeSuperClassesProperty)(_this.constructor, 'DATA_MANAGER', _metal.array.firstDefinedValue);
 			(0, _metal.mergeSuperClassesProperty)(_this.constructor, 'ELEMENT_CLASSES', _this.mergeElementClasses_);
+			(0, _metal.mergeSuperClassesProperty)(_this.constructor, 'RENDERER', _metal.array.firstDefinedValue);
 			(0, _metal.mergeSuperClassesProperty)(_this.constructor, 'SYNC_UPDATES', _metal.array.firstDefinedValue);
 
+			_this.setShouldUseFacade(true);
 			_this.element = _this.initialConfig_.element;
 
 			_this.renderer_ = _this.createRenderer();
-			_this.renderer_.on('rendered', _this.handleRendererRendered_.bind(_this));
-
-			_this.dataManager_ = _this.createDataManager();
-			_this.emit('dataManagerCreated');
+			_this.dataManager_ = _this.constructor.DATA_MANAGER_MERGED;
+			_this.dataManager_.setUp(_this, _metal.object.mixin({}, _this.renderer_.getExtraDataConfig(), Component.DATA));
 
 			_this.on('stateChanged', _this.handleStateChanged_);
-			_this.newListenerHandle_ = _this.on('newListener', _this.handleNewListener_);
 			_this.on('eventsChanged', _this.onEventsChanged_);
-			_this.addListenersFromObj_(_this.dataManager_.get('events'));
+			_this.addListenersFromObj_(_this.dataManager_.get(_this, 'events'));
 
 			_this.created();
 			_this.componentCreated_ = true;
 			if (opt_parentElement !== false) {
 				_this.render_(opt_parentElement);
 			}
-			_this.on('elementChanged', _this.onElementChanged_);
 			return _this;
 		}
 
@@ -6852,6 +6956,9 @@
 						} else {
 							handler = this.on(eventNames[i], info.fn);
 						}
+						if (!this.eventsStateKeyHandler_) {
+							this.eventsStateKeyHandler_ = new _metalEvents.EventHandler();
+						}
 						this.eventsStateKeyHandler_.add(handler);
 					}
 				}
@@ -6877,10 +6984,11 @@
 				if (!this.inDocument) {
 					this.renderElement_(opt_parentElement, opt_siblingElement);
 					this.inDocument = true;
-					this.emit('attached', {
+					this.attachData_ = {
 						parent: opt_parentElement,
 						sibling: opt_siblingElement
-					});
+					};
+					this.emit('attached', this.attachData_);
 					this.attached();
 				}
 				return this;
@@ -6920,19 +7028,6 @@
 			value: function created() {}
 
 			/**
-	   * Creates the data manager for this component. Sub classes can override this
-	   * to return a custom manager as needed.
-	   * @return {!ComponentDataManager}
-	   */
-
-		}, {
-			key: 'createDataManager',
-			value: function createDataManager() {
-				(0, _metal.mergeSuperClassesProperty)(this.constructor, 'DATA_MANAGER', _metal.array.firstDefinedValue);
-				return new this.constructor.DATA_MANAGER_MERGED(this, Component.DATA);
-			}
-
-			/**
 	   * Creates the renderer for this component. Sub classes can override this to
 	   * return a custom renderer as needed.
 	   * @return {!ComponentRenderer}
@@ -6941,7 +7036,6 @@
 		}, {
 			key: 'createRenderer',
 			value: function createRenderer() {
-				(0, _metal.mergeSuperClassesProperty)(this.constructor, 'RENDERER', _metal.array.firstDefinedValue);
 				return new this.constructor.RENDERER_MERGED(this);
 			}
 
@@ -7015,15 +7109,13 @@
 
 				this.detach();
 
-				if (this.elementEventProxy_) {
-					this.elementEventProxy_.dispose();
-					this.elementEventProxy_ = null;
-				}
+				this.elementEventProxy_.dispose();
+				this.elementEventProxy_ = null;
 
 				this.disposeSubComponents(Object.keys(this.components));
 				this.components = null;
 
-				this.dataManager_.dispose();
+				this.dataManager_.dispose(this);
 				this.dataManager_ = null;
 
 				this.renderer_.dispose();
@@ -7074,7 +7166,18 @@
 			}
 
 			/**
-	   * Gets the `ComponentDataManager` instance being used.
+	   * Gets data about where this component was attached at.
+	   * @return {!Object}
+	   */
+
+		}, {
+			key: 'getAttachData',
+			value: function getAttachData() {
+				return this.attachData_;
+			}
+
+			/**
+	   * Gets the `ComponentDataManager` being used.
 	   * @return {!ComponentDataManager}
 	   */
 
@@ -7121,7 +7224,7 @@
 		}, {
 			key: 'getState',
 			value: function getState() {
-				return this.dataManager_.getState();
+				return this.dataManager_.getState(this);
 			}
 
 			/**
@@ -7132,7 +7235,32 @@
 		}, {
 			key: 'getStateKeys',
 			value: function getStateKeys() {
-				return this.dataManager_.getStateKeys();
+				return this.dataManager_.getStateKeys(this);
+			}
+
+			/**
+	   * Gets the `sync` methods for this component's state.
+	   * @return {!Object}
+	   * @protected
+	   */
+
+		}, {
+			key: 'getSyncFns_',
+			value: function getSyncFns_() {
+				var ctor = this.constructor;
+				if (!ctor.hasOwnProperty('__METAL_SYNC_FNS__')) {
+					var fns = {};
+					var keys = this.dataManager_.getSyncKeys(this);
+					for (var i = 0; i < keys.length; i++) {
+						var name = 'sync' + keys[i].charAt(0).toUpperCase() + keys[i].slice(1);
+						var fn = ctor.prototype[name];
+						if (fn) {
+							fns[keys[i]] = fn;
+						}
+					}
+					ctor.__METAL_SYNC_FNS__ = fns;
+				}
+				return ctor.__METAL_SYNC_FNS__;
 			}
 
 			/**
@@ -7146,12 +7274,12 @@
 		}, {
 			key: 'fireStateKeyChange_',
 			value: function fireStateKeyChange_(key, opt_change) {
-				var fn = this['sync' + key.charAt(0).toUpperCase() + key.slice(1)];
+				var fn = this.getSyncFns_()[key];
 				if ((0, _metal.isFunction)(fn)) {
 					if (!opt_change) {
 						var manager = this.getDataManager();
 						opt_change = {
-							newVal: manager.get(key),
+							newVal: manager.get(this, key),
 							prevVal: undefined
 						};
 					}
@@ -7171,19 +7299,6 @@
 			}
 
 			/**
-	   * Handles a `rendered` event from the current renderer instance.
-	   * @param {!Object}
-	   * @protected
-	   */
-
-		}, {
-			key: 'handleRendererRendered_',
-			value: function handleRendererRendered_(data) {
-				this.rendered(data);
-				this.emit('rendered', data);
-			}
-
-			/**
 	   * Handles state batch changes. Calls any existing `sync` functions that
 	   * match the changed state keys.
 	   * @param {Event} event
@@ -7193,21 +7308,9 @@
 		}, {
 			key: 'handleStateChanged_',
 			value: function handleStateChanged_(event) {
+				this.getRenderer().sync(event);
 				this.syncStateFromChanges_(event.changes);
 				this.emit('stateSynced', event);
-			}
-
-			/**
-	   * Handles the `newListener` event. Just flags that this event type has been
-	   * attached, so we can start proxying it when `DomEventEmitterProxy` is created.
-	   * @param {string} event
-	   * @protected
-	   */
-
-		}, {
-			key: 'handleNewListener_',
-			value: function handleNewListener_(event) {
-				this.attachedListeners_[event] = true;
 			}
 
 			/**
@@ -7239,22 +7342,6 @@
 			}
 
 			/**
-	   * Fired when the `element` state value is changed.
-	   * @param {!Object} event
-	   * @protected
-	   */
-
-		}, {
-			key: 'onElementChanged_',
-			value: function onElementChanged_(event) {
-				this.setUpProxy_();
-				this.elementEventProxy_.setOriginEmitter(event.newVal);
-				if (event.newVal) {
-					this.syncVisible(this.dataManager_.get('visible'));
-				}
-			}
-
-			/**
 	   * Fired when the `events` state value is changed.
 	   * @param {!Object} event
 	   * @protected
@@ -7263,7 +7350,9 @@
 		}, {
 			key: 'onEventsChanged_',
 			value: function onEventsChanged_(event) {
-				this.eventsStateKeyHandler_.removeAllListeners();
+				if (this.eventsStateKeyHandler_) {
+					this.eventsStateKeyHandler_.removeAllListeners();
+				}
 				this.addListenersFromObj_(event.newVal);
 			}
 
@@ -7302,9 +7391,9 @@
 	   */
 			value: function render_(opt_parentElement, opt_skipRender) {
 				if (!opt_skipRender) {
+					this.getRenderer().render();
 					this.emit('render');
 				}
-				this.setUpProxy_();
 				this.syncState_();
 				this.attach(opt_parentElement);
 				this.wasRendered = true;
@@ -7361,7 +7450,7 @@
 	   *   after the next batched update is triggered.
 	   */
 			value: function setState(state, opt_callback) {
-				this.dataManager_.setState(state, opt_callback);
+				this.dataManager_.setState(this, state, opt_callback);
 			}
 
 			/**
@@ -7382,29 +7471,6 @@
 			}
 
 			/**
-	   * Creates the `DomEventEmitterProxy` instance and has it start proxying any
-	   * listeners that have already been listened to.
-	   * @protected
-	   */
-
-		}, {
-			key: 'setUpProxy_',
-			value: function setUpProxy_() {
-				if (this.elementEventProxy_) {
-					return;
-				}
-
-				var proxy = new _metalDom.DomEventEmitterProxy(this.element, this);
-				this.elementEventProxy_ = proxy;
-
-				_metal.object.map(this.attachedListeners_, proxy.proxyEvent.bind(proxy));
-				this.attachedListeners_ = null;
-
-				this.newListenerHandle_.removeListener();
-				this.newListenerHandle_ = null;
-			}
-
-			/**
 	   * Fires state synchronization functions.
 	   * @protected
 	   */
@@ -7412,7 +7478,7 @@
 		}, {
 			key: 'syncState_',
 			value: function syncState_() {
-				var keys = this.dataManager_.getSyncKeys();
+				var keys = Object.keys(this.getSyncFns_());
 				for (var i = 0; i < keys.length; i++) {
 					this.fireStateKeyChange_(keys[i]);
 				}
@@ -7486,11 +7552,15 @@
 				if (this.elementVal_ !== val) {
 					var prev = this.elementVal_;
 					this.elementVal_ = val;
+					this.elementEventProxy_.setOriginEmitter(val);
 					if (this.componentCreated_) {
 						this.emit('elementChanged', {
 							prevVal: prev,
 							newVal: val
 						});
+						if (val && this.wasRendered) {
+							this.syncVisible(this.dataManager_.get(this, 'visible'));
+						}
 					}
 				}
 			}
@@ -7525,6 +7595,16 @@
 
 
 	Component.DATA = {
+		/**
+	  * Objects describing children elements that were passed to be rendered inside
+	  * this component.
+	  * @type {!Array<!Object>}
+	  */
+		children: {
+			validator: Array.isArray,
+			value: []
+		},
+
 		/**
 	  * CSS classes to be applied to the element.
 	  * @type {string}
@@ -7596,11 +7676,17 @@
 	 */
 	Component.prototype[Component.COMPONENT_FLAG] = true;
 
+	var proxyBlackList_ = {
+		eventsChanged: true,
+		stateChanged: true,
+		stateKeyChanged: true
+	};
+
 	exports.default = Component;
 
 /***/ },
 
-/***/ 357:
+/***/ 336:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -7609,252 +7695,166 @@
 		value: true
 	});
 
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	var _metal = __webpack_require__(305);
 
-	var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
-
-	var _metal = __webpack_require__(326);
-
-	var _metalEvents = __webpack_require__(344);
-
-	var _metalState = __webpack_require__(358);
+	var _metalState = __webpack_require__(337);
 
 	var _metalState2 = _interopRequireDefault(_metalState);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var ComponentDataManager = function (_EventEmitter) {
-		_inherits(ComponentDataManager, _EventEmitter);
+	var ComponentDataManager = {
+		BLACKLIST: {
+			components: true,
+			context: true,
+			element: true,
+			refs: true,
+			state: true,
+			stateKey: true,
+			wasRendered: true
+		},
 
 		/**
-	  * Constructor for `ComponentDataManager`.
+	  * Creates the `State` instance that will handle the main component data.
 	  * @param {!Component} component
 	  * @param {!Object} data
+	  * @protected
 	  */
-		function ComponentDataManager(component, data) {
-			_classCallCheck(this, ComponentDataManager);
+		createState_: function createState_(component, data) {
+			var state = new _metalState2.default(component.getInitialConfig(), component, component);
+			state.setKeysBlacklist_(this.BLACKLIST);
+			state.configState(_metal.object.mixin({}, data, component.constructor.STATE_MERGED));
+			this.getManagerData(component).state_ = state;
+		},
 
-			var _this = _possibleConstructorReturn(this, (ComponentDataManager.__proto__ || Object.getPrototypeOf(ComponentDataManager)).call(this));
-
-			_this.component_ = component;
-
-			(0, _metal.mergeSuperClassesProperty)(_this.constructor, 'BLACKLIST', _metal.array.firstDefinedValue);
-			_metalState2.default.mergeStateStatic(_this.component_.constructor);
-
-			_this.createState_(data, _this.component_);
-			return _this;
-		}
 
 		/**
-	  * Adds a state property to the component.
-	  * @param {string} name
-	  * @param {!Object} config
-	  * @param {*} opt_initialValue
+	  * Disposes of any data being used by the manager in this component.
+	  * @param {!Component} component
 	  */
-
-
-		_createClass(ComponentDataManager, [{
-			key: 'add',
-			value: function add() {
-				var _state_;
-
-				(_state_ = this.state_).addToState.apply(_state_, arguments);
+		dispose: function dispose(component) {
+			var data = this.getManagerData(component);
+			if (data.state_) {
+				data.state_.dispose();
 			}
-
-			/**
-	   * Builds the configuration data that will be passed to the `State` instance.
-	   * @param {!Object} data
-	   * @return {!Object}
-	   * @protected
-	   */
-
-		}, {
-			key: 'buildStateInstanceData_',
-			value: function buildStateInstanceData_(data) {
-				return _metal.object.mixin({}, data, this.component_.constructor.STATE_MERGED);
-			}
-
-			/**
-	   * Creates the `State` instance that will handle the main component data.
-	   * @param {!Object} data
-	   * @param {!Object} holder The object that should hold the data properties.
-	   * @protected
-	   */
-
-		}, {
-			key: 'createState_',
-			value: function createState_(data, holder) {
-				var state = new _metalState2.default({}, holder, this.component_);
-				state.setKeysBlacklist_(this.constructor.BLACKLIST_MERGED);
-				state.addToState(this.buildStateInstanceData_(data), this.component_.getInitialConfig());
-
-				var listener = this.emit_.bind(this);
-				state.on('stateChanged', listener);
-				state.on('stateKeyChanged', listener);
-				this.state_ = state;
-
-				this.proxy_ = new _metalEvents.EventEmitterProxy(state, this.component_);
-			}
-
-			/**
-	   * @inheritDoc
-	   */
-
-		}, {
-			key: 'disposeInternal',
-			value: function disposeInternal() {
-				_get(ComponentDataManager.prototype.__proto__ || Object.getPrototypeOf(ComponentDataManager.prototype), 'disposeInternal', this).call(this);
-
-				this.state_.dispose();
-				this.state_ = null;
-
-				this.proxy_.dispose();
-				this.proxy_ = null;
-			}
-
-			/**
-	   * Emits the specified event.
-	   * @param {!Object} data
-	   * @param {!Object} event
-	   * @protected
-	   */
-
-		}, {
-			key: 'emit_',
-			value: function emit_(data, event) {
-				var orig = event.type;
-				var name = orig === 'stateChanged' ? 'dataChanged' : 'dataPropChanged';
-				this.emit(name, data);
-			}
-
-			/**
-	   * Gets the data with the given name.
-	   * @param {string} name
-	   * @return {*}
-	   */
-
-		}, {
-			key: 'get',
-			value: function get(name) {
-				return this.state_.get(name);
-			}
-
-			/**
-	   * Gets the keys for state data that can be synced via `sync` functions.
-	   * @return {!Array<string>}
-	   */
-
-		}, {
-			key: 'getSyncKeys',
-			value: function getSyncKeys() {
-				return this.state_.getStateKeys();
-			}
-
-			/**
-	   * Gets the keys for state data.
-	   * @return {!Array<string>}
-	   */
-
-		}, {
-			key: 'getStateKeys',
-			value: function getStateKeys() {
-				return this.state_.getStateKeys();
-			}
-
-			/**
-	   * Gets the whole state data.
-	   * @return {!Object}
-	   */
-
-		}, {
-			key: 'getState',
-			value: function getState() {
-				return this.state_.getState();
-			}
-
-			/**
-	   * Gets the `State` instance being used.
-	   * @return {!Object}
-	   */
-
-		}, {
-			key: 'getStateInstance',
-			value: function getStateInstance() {
-				return this.state_;
-			}
-
-			/**
-	   * Updates all non internal data with the given values (or to the default
-	   * value if none is given).
-	   * @param {!Object} data
-	   */
-
-		}, {
-			key: 'replaceNonInternal',
-			value: function replaceNonInternal(data) {
-				ComponentDataManager.replaceNonInternal(data, this.state_);
-			}
-
-			/**
-	   * Updates all non internal data with the given values (or to the default
-	   * value if none is given).
-	   * @param {!Object} data
-	   * @param {!State} state
-	   */
-
-		}, {
-			key: 'setState',
+			component.__DATA_MANAGER_DATA__ = null;
+		},
 
 
-			/**
-	   * Sets the value of all the specified state keys.
-	   * @param {!Object.<string,*>} values A map of state keys to the values they
-	   *   should be set to.
-	   * @param {function()=} opt_callback An optional function that will be run
-	   *   after the next batched update is triggered.
-	   */
-			value: function setState(state, opt_callback) {
-				this.state_.setState(state, opt_callback);
-			}
-		}], [{
-			key: 'replaceNonInternal',
-			value: function replaceNonInternal(data, state) {
-				var keys = state.getStateKeys();
-				for (var i = 0; i < keys.length; i++) {
-					var key = keys[i];
-					if (!state.getStateKeyConfig(key).internal) {
-						if (data.hasOwnProperty(key)) {
-							state.set(key, data[key]);
-						} else {
-							state.setDefaultValue(key);
-						}
+		/**
+	  * Gets the data with the given name.
+	  * @param {!Component} component
+	  * @param {string} name
+	  * @return {*}
+	  */
+		get: function get(component, name) {
+			return this.getManagerData(component).state_.get(name);
+		},
+
+
+		/**
+	  * Gets the manager data for the given component.
+	  * @param {!Component} component
+	  * @return {Object}
+	  */
+		getManagerData: function getManagerData(component) {
+			return component.__DATA_MANAGER_DATA__;
+		},
+
+
+		/**
+	  * Gets the keys for state data that can be synced via `sync` functions.
+	  * @param {!Component} component
+	  * @return {!Array<string>}
+	  */
+		getSyncKeys: function getSyncKeys(component) {
+			return this.getManagerData(component).state_.getStateKeys();
+		},
+
+
+		/**
+	  * Gets the keys for state data.
+	  * @param {!Component} component
+	  * @return {!Array<string>}
+	  */
+		getStateKeys: function getStateKeys(component) {
+			return this.getManagerData(component).state_.getStateKeys();
+		},
+
+
+		/**
+	  * Gets the whole state data.
+	  * @param {!Component} component
+	  * @return {!Object}
+	  */
+		getState: function getState(component) {
+			return this.getManagerData(component).state_.getState();
+		},
+
+
+		/**
+	  * Gets the `State` instance being used.
+	  * @param {!Component} component
+	  * @return {!Object}
+	  */
+		getStateInstance: function getStateInstance(component) {
+			return this.getManagerData(component).state_;
+		},
+
+
+		/**
+	  * Updates all non internal data with the given values (or to the default
+	  * value if none is given).
+	  * @param {!Component} component
+	  * @param {!Object} data
+	  * @param {State=} opt_state
+	  */
+		replaceNonInternal: function replaceNonInternal(component, data, opt_state) {
+			var state = opt_state || this.getManagerData(component).state_;
+			var keys = state.getStateKeys();
+			for (var i = 0; i < keys.length; i++) {
+				var key = keys[i];
+				if (!state.getStateKeyConfig(key).internal) {
+					if (data.hasOwnProperty(key)) {
+						state.set(key, data[key]);
+					} else {
+						state.setDefaultValue(key);
 					}
 				}
 			}
-		}]);
+		},
 
-		return ComponentDataManager;
-	}(_metalEvents.EventEmitter);
 
-	ComponentDataManager.BLACKLIST = {
-		components: true,
-		context: true,
-		element: true,
-		refs: true,
-		wasRendered: true
+		/**
+	  * Sets the value of all the specified state keys.
+	  * @param {!Component} component
+	  * @param {!Object.<string,*>} values A map of state keys to the values they
+	  *   should be set to.
+	  * @param {function()=} opt_callback An optional function that will be run
+	  *   after the next batched update is triggered.
+	  */
+		setState: function setState(component, state, opt_callback) {
+			this.getManagerData(component).state_.setState(state, opt_callback);
+		},
+
+
+		/**
+	  * Sets up the specified component's data.
+	  * @param {!Component} component
+	  * @param {!Object} data
+	  */
+		setUp: function setUp(component, data) {
+			component.__DATA_MANAGER_DATA__ = {};
+			_metalState2.default.mergeStateStatic(component.constructor);
+			this.createState_(component, data);
+		}
 	};
 
 	exports.default = ComponentDataManager;
 
 /***/ },
 
-/***/ 358:
+/***/ 337:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -7864,15 +7864,15 @@
 	});
 	exports.State = exports.Config = exports.validators = undefined;
 
-	var _validators = __webpack_require__(359);
+	var _validators = __webpack_require__(338);
 
 	var _validators2 = _interopRequireDefault(_validators);
 
-	var _Config = __webpack_require__(360);
+	var _Config = __webpack_require__(339);
 
 	var _Config2 = _interopRequireDefault(_Config);
 
-	var _State = __webpack_require__(361);
+	var _State = __webpack_require__(340);
 
 	var _State2 = _interopRequireDefault(_State);
 
@@ -7885,7 +7885,7 @@
 
 /***/ },
 
-/***/ 359:
+/***/ 338:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -7894,9 +7894,9 @@
 		value: true
 	});
 
-	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-	var _metal = __webpack_require__(326);
+	var _metal = __webpack_require__(305);
 
 	/**
 	 * Provides access to various type validators that will return an
@@ -8127,7 +8127,7 @@
 
 /***/ },
 
-/***/ 360:
+/***/ 339:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -8136,9 +8136,9 @@
 		value: true
 	});
 
-	var _metal = __webpack_require__(326);
+	var _metal = __webpack_require__(305);
 
-	var _validators = __webpack_require__(359);
+	var _validators = __webpack_require__(338);
 
 	var _validators2 = _interopRequireDefault(_validators);
 
@@ -8174,7 +8174,7 @@
 	  * @return {!Object} `State` configuration object.
 	  */
 		required: function required() {
-			var _required = arguments.length <= 0 || arguments[0] === undefined ? true : arguments[0];
+			var _required = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
 
 			return mergeConfig(this, { required: _required });
 		},
@@ -8238,7 +8238,7 @@
 
 /***/ },
 
-/***/ 361:
+/***/ 340:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -8251,9 +8251,9 @@
 
 	var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-	var _metal = __webpack_require__(326);
+	var _metal = __webpack_require__(305);
 
-	var _metalEvents = __webpack_require__(344);
+	var _metalEvents = __webpack_require__(323);
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -8264,7 +8264,7 @@
 	/**
 	 * State adds support for having object properties that can be watched for
 	 * changes, as well as configured with validators, setters and other options.
-	 * See the `addToState` method for a complete list of available configuration
+	 * See the `configState` method for a complete list of available configuration
 	 * options for each state key.
 	 * @extends {EventEmitter}
 	 */
@@ -8280,34 +8280,25 @@
 	  *     instead.
 	  * @param {Object=} opt_context Optional context to call functions (like
 	  *     validators and setters) on. Defaults to `this`.
-	  * @param {Object=} opt_commonOpts Optional common option values to be used
-	  *     by all this instance's state properties.
 	  */
-		function State(opt_config, opt_obj, opt_context, opt_commonOpts) {
+		function State(opt_config, opt_obj, opt_context) {
 			_classCallCheck(this, State);
-
-			/**
-	   * Common option values to be used by all this instance's state properties.
-	   * @type {Object}
-	   * @protected
-	   */
-			var _this = _possibleConstructorReturn(this, (State.__proto__ || Object.getPrototypeOf(State)).call(this));
-
-			_this.commonOpts_ = opt_commonOpts;
 
 			/**
 	   * Context to call functions (like validators and setters) on.
 	   * @type {!Object}
 	   * @protected
 	   */
+			var _this = _possibleConstructorReturn(this, (State.__proto__ || Object.getPrototypeOf(State)).call(this));
+
 			_this.context_ = opt_context || _this;
 
 			/**
 	   * Map of keys that can not be used as state keys.
-	   * @type {!Object<string, boolean>}
+	   * @type {Object<string, boolean>}
 	   * @protected
 	   */
-			_this.keysBlacklist_ = {};
+			_this.keysBlacklist_ = null;
 
 			/**
 	   * Object that should hold the state properties.
@@ -8315,6 +8306,8 @@
 	   * @protected
 	   */
 			_this.obj_ = opt_obj || _this;
+
+			_this.eventData_ = null;
 
 			/**
 	   * Object with information about the batch event that is currently
@@ -8331,128 +8324,35 @@
 	   */
 			_this.stateInfo_ = {};
 
+			_this.stateConfigs_ = {};
+
+			_this.initialValues_ = _metal.object.mixin({}, opt_config);
+
 			_this.setShouldUseFacade(true);
-			_this.mergeInvalidKeys_();
-			_this.addToStateFromStaticHint_(opt_config);
+			_this.configStateFromStaticHint_();
+
+			Object.defineProperty(_this.obj_, State.STATE_REF_KEY, {
+				configurable: true,
+				enumerable: false,
+				value: _this
+			});
 			return _this;
 		}
 
 		/**
-	  * Adds the given key to the state.
-	  * @param {string} name The name of the new state key.
-	  * @param {Object.<string, *>=} config The configuration object for the new
-	  *     key. See `addToState` for supported settings.
-	  * @param {*} initialValue The initial value of the new key.
+	  * Logs an error if the given property is required but wasn't given.
+	  * @param {string} name
+	  * @protected
 	  */
 
 
 		_createClass(State, [{
-			key: 'addKeyToState',
-			value: function addKeyToState(name, config, initialValue) {
-				this.buildKeyInfo_(name, config, initialValue, arguments.length > 2);
-				Object.defineProperty(this.obj_, name, this.buildKeyPropertyDef_(name));
-				this.validateInitialValue_(name);
-				this.assertGivenIfRequired_(name);
-			}
-
-			/**
-	   * Adds the given key(s) to the state, together with its(their) configs.
-	   * Config objects support the given settings:
-	   *     required - When set to `true`, causes errors to be printed (via
-	   *     `console.error`) if no value is given for the property.
-	   *
-	   *     setter - Function for normalizing state key values. It receives the new
-	   *     value that was set, and returns the value that should be stored.
-	   *
-	   *     validator - Function that validates state key values. When it returns
-	   *     false, the new value is ignored. When it returns an instance of Error,
-	   *     it will emit the error to the console.
-	   *
-	   *     value - The default value for the state key. Note that setting this to
-	   *     an object will cause all class instances to use the same reference to
-	   *     the object. To have each instance use a different reference for objects,
-	   *     use the `valueFn` option instead.
-	   *
-	   *     valueFn - A function that returns the default value for a state key.
-	   *
-	   *     writeOnce - Ignores writes to the state key after it's been first
-	   *     written to. That is, allows writes only when setting the value for the
-	   *     first time.
-	   * @param {!Object.<string, !Object>|string} configsOrName An object that maps
-	   *     configuration options for keys to be added to the state or the name of
-	   *     a single key to be added.
-	   * @param {Object.<string, *>=} opt_initialValuesOrConfig An object that maps
-	   *     state keys to their initial values. These values have higher precedence
-	   *     than the default values specified in the configurations. If a single
-	   *     key name was passed as the first param instead though, then this should
-	   *     be the configuration object for that key.
-	   * @param {boolean|Object|*=} opt_contextOrInitialValue If the first
-	   *     param passed to this method was a config object, this should be the
-	   *     context where the added state keys will be defined (defaults to `this`),
-	   *     or false if they shouldn't be defined at all. If the first param was a
-	   *     single key name though, this should be its initial value.
-	   */
-
-		}, {
-			key: 'addToState',
-			value: function addToState(configsOrName, opt_initialValuesOrConfig, opt_contextOrInitialValue) {
-				if ((0, _metal.isString)(configsOrName)) {
-					return this.addKeyToState.apply(this, arguments);
-				}
-
-				var initialValues = opt_initialValuesOrConfig || {};
-				var names = Object.keys(configsOrName);
-
-				var props = {};
-				for (var i = 0; i < names.length; i++) {
-					var name = names[i];
-					this.buildKeyInfo_(name, configsOrName[name], initialValues[name], initialValues.hasOwnProperty(name));
-					props[name] = this.buildKeyPropertyDef_(name, opt_contextOrInitialValue);
-					this.assertGivenIfRequired_(name);
-				}
-
-				if (opt_contextOrInitialValue !== false) {
-					Object.defineProperties(opt_contextOrInitialValue || this.obj_, props);
-				}
-
-				// Validate initial values after all properties have been defined, otherwise
-				// it won't be possible to access those properties within validators.
-				for (var _i = 0; _i < names.length; _i++) {
-					this.validateInitialValue_(names[_i]);
-				}
-			}
-
-			/**
-	   * Adds state keys from super classes static hint `MyClass.STATE = {};`.
-	   * @param {Object.<string, !Object>=} opt_config An object that maps all the
-	   *     configurations for state keys.
-	   * @protected
-	   */
-
-		}, {
-			key: 'addToStateFromStaticHint_',
-			value: function addToStateFromStaticHint_(opt_config) {
-				var ctor = this.constructor;
-				var defineContext;
-				var merged = State.mergeStateStatic(ctor);
-				if (this.obj_ === this) {
-					defineContext = merged ? ctor.prototype : false;
-				}
-				this.addToState(ctor.STATE_MERGED, opt_config, defineContext);
-			}
-
-			/**
-	   * Logs an error if the given property is required but wasn't given.
-	   * @param {string} name
-	   * @protected
-	   */
-
-		}, {
 			key: 'assertGivenIfRequired_',
 			value: function assertGivenIfRequired_(name) {
-				var info = this.stateInfo_[name];
-				if (info.config.required) {
-					var value = info.state === State.KeyStates.INITIALIZED ? this.get(name) : info.initialValue;
+				var config = this.stateConfigs_[name];
+				if (config.required) {
+					var info = this.getStateInfo(name);
+					var value = info.state === State.KeyStates.INITIALIZED ? this.get(name) : this.initialValues_[name];
 					if (!(0, _metal.isDefAndNotNull)(value)) {
 						console.error('The property called "' + name + '" is required but didn\'t ' + 'receive a value.');
 					}
@@ -8470,58 +8370,29 @@
 		}, {
 			key: 'assertValidStateKeyName_',
 			value: function assertValidStateKeyName_(name) {
-				if (this.constructor.INVALID_KEYS_MERGED[name] || this.keysBlacklist_[name]) {
+				if (this.keysBlacklist_ && this.keysBlacklist_[name]) {
 					throw new Error('It\'s not allowed to create a state key with the name "' + name + '".');
-				}
-			}
-
-			/**
-	   * Builds the info object for the specified state key.
-	   * @param {string} name The name of the key.
-	   * @param {Object} config The config object for the key.
-	   * @param {*} initialValue The initial value of the key.
-	   * @param {boolean} hasInitialValue Flag indicating if an initial value was
-	   *     given or not (important since `initialValue` can also be `undefined`).
-	   * @protected
-	   */
-
-		}, {
-			key: 'buildKeyInfo_',
-			value: function buildKeyInfo_(name, config, initialValue, hasInitialValue) {
-				this.assertValidStateKeyName_(name);
-				config = config && config.config ? config.config : config || {};
-				if (this.commonOpts_) {
-					config = _metal.object.mixin({}, config, this.commonOpts_);
-				}
-				this.stateInfo_[name] = {
-					config: config,
-					state: State.KeyStates.UNINITIALIZED
-				};
-				if (hasInitialValue) {
-					this.stateInfo_[name].initialValue = initialValue;
 				}
 			}
 
 			/**
 	   * Builds the property definition object for the specified state key.
 	   * @param {string} name The name of the key.
-	   * @param {Object=} opt_context The object where the property will be added.
 	   * @return {!Object}
 	   * @protected
 	   */
 
 		}, {
 			key: 'buildKeyPropertyDef_',
-			value: function buildKeyPropertyDef_(name, opt_context) {
-				var stateObj = opt_context === this.constructor.prototype ? null : this;
+			value: function buildKeyPropertyDef_(name) {
 				return {
 					configurable: true,
 					enumerable: true,
 					get: function get() {
-						return (stateObj || this).getStateKeyValue_(name);
+						return this[State.STATE_REF_KEY].getStateKeyValue_(name);
 					},
 					set: function set(val) {
-						(stateObj || this).setStateKeyValue_(name, val);
+						this[State.STATE_REF_KEY].setStateKeyValue_(name, val);
 					}
 				};
 			}
@@ -8558,8 +8429,7 @@
 		}, {
 			key: 'callSetter_',
 			value: function callSetter_(name, value, currentValue) {
-				var info = this.stateInfo_[name];
-				var config = info.config;
+				var config = this.stateConfigs_[name];
 				if (config.setter) {
 					value = this.callFunction_(config.setter, [value, currentValue]);
 				}
@@ -8578,8 +8448,7 @@
 		}, {
 			key: 'callValidator_',
 			value: function callValidator_(name, value) {
-				var info = this.stateInfo_[name];
-				var config = info.config;
+				var config = this.stateConfigs_[name];
 				if (config.validator) {
 					var validatorReturn = this.callFunction_(config.validator, [value, name, this.context_]);
 
@@ -8600,8 +8469,86 @@
 		}, {
 			key: 'canSetState',
 			value: function canSetState(name) {
-				var info = this.stateInfo_[name];
-				return !info.config.writeOnce || !info.written;
+				var info = this.getStateInfo(name);
+				return !this.stateConfigs_[name].writeOnce || !info.written;
+			}
+
+			/**
+	   * Adds the given key(s) to the state, together with its(their) configs.
+	   * Config objects support the given settings:
+	   *     required - When set to `true`, causes errors to be printed (via
+	   *     `console.error`) if no value is given for the property.
+	   *
+	   *     setter - Function for normalizing state key values. It receives the new
+	   *     value that was set, and returns the value that should be stored.
+	   *
+	   *     validator - Function that validates state key values. When it returns
+	   *     false, the new value is ignored. When it returns an instance of Error,
+	   *     it will emit the error to the console.
+	   *
+	   *     value - The default value for the state key. Note that setting this to
+	   *     an object will cause all class instances to use the same reference to
+	   *     the object. To have each instance use a different reference for objects,
+	   *     use the `valueFn` option instead.
+	   *
+	   *     valueFn - A function that returns the default value for a state key.
+	   *
+	   *     writeOnce - Ignores writes to the state key after it's been first
+	   *     written to. That is, allows writes only when setting the value for the
+	   *     first time.
+	   * @param {!Object.<string, !Object>|string} configs An object that maps
+	   *     configuration options for keys to be added to the state.
+	   * @param {boolean|Object|*=} opt_context The context where the added state
+	   *     keys will be defined (defaults to `this`), or false if they shouldn't
+	   *     be defined at all.
+	   */
+
+		}, {
+			key: 'configState',
+			value: function configState(configs, opt_context) {
+				var names = Object.keys(configs);
+				if (names.length === 0) {
+					return;
+				}
+
+				if (opt_context !== false) {
+					var props = {};
+					for (var i = 0; i < names.length; i++) {
+						var name = names[i];
+						this.assertValidStateKeyName_(name);
+						props[name] = this.buildKeyPropertyDef_(name);
+					}
+					Object.defineProperties(opt_context || this.obj_, props);
+				}
+
+				this.stateConfigs_ = configs;
+				for (var _i = 0; _i < names.length; _i++) {
+					var _name = names[_i];
+					configs[_name] = configs[_name].config ? configs[_name].config : configs[_name];
+					this.assertGivenIfRequired_(names[_i]);
+					this.validateInitialValue_(names[_i]);
+				}
+			}
+
+			/**
+	   * Adds state keys from super classes static hint `MyClass.STATE = {};`.
+	   * @param {Object.<string, !Object>=} opt_config An object that maps all the
+	   *     configurations for state keys.
+	   * @protected
+	   */
+
+		}, {
+			key: 'configStateFromStaticHint_',
+			value: function configStateFromStaticHint_() {
+				var ctor = this.constructor;
+				if (ctor !== State) {
+					var defineContext;
+					var merged = State.mergeStateStatic(ctor);
+					if (this.obj_ === this) {
+						defineContext = merged ? ctor.prototype : false;
+					}
+					this.configState(ctor.STATE_MERGED, defineContext);
+				}
 			}
 
 			/**
@@ -8612,7 +8559,9 @@
 			key: 'disposeInternal',
 			value: function disposeInternal() {
 				_get(State.prototype.__proto__ || Object.getPrototypeOf(State.prototype), 'disposeInternal', this).call(this);
+				this.initialValues_ = null;
 				this.stateInfo_ = null;
+				this.stateConfigs_ = null;
 				this.scheduledBatchData_ = null;
 			}
 
@@ -8627,7 +8576,7 @@
 				if (!this.isDisposed()) {
 					var data = this.scheduledBatchData_;
 					this.scheduledBatchData_ = null;
-					this.emit('stateChanged', data);
+					this.context_.emit('stateChanged', data);
 				}
 			}
 
@@ -8667,6 +8616,21 @@
 			}
 
 			/**
+	   * Gets information about the specified state property.
+	   * @param {string} name
+	   * @return {!Object}
+	   */
+
+		}, {
+			key: 'getStateInfo',
+			value: function getStateInfo(name) {
+				if (!this.stateInfo_[name]) {
+					this.stateInfo_[name] = {};
+				}
+				return this.stateInfo_[name];
+			}
+
+			/**
 	   * Gets the config object for the requested state key.
 	   * @param {string} name The key's name.
 	   * @return {Object}
@@ -8676,7 +8640,7 @@
 		}, {
 			key: 'getStateKeyConfig',
 			value: function getStateKeyConfig(name) {
-				return (this.stateInfo_[name] || {}).config;
+				return this.stateConfigs_ ? this.stateConfigs_[name] : null;
 			}
 
 			/**
@@ -8687,7 +8651,7 @@
 		}, {
 			key: 'getStateKeys',
 			value: function getStateKeys() {
-				return this.stateInfo_ ? Object.keys(this.stateInfo_) : [];
+				return this.stateConfigs_ ? Object.keys(this.stateConfigs_) : [];
 			}
 
 			/**
@@ -8703,7 +8667,7 @@
 			value: function getStateKeyValue_(name) {
 				if (!this.warnIfDisposed_(name)) {
 					this.initStateKey_(name);
-					return this.stateInfo_[name].value;
+					return this.getStateInfo(name).value;
 				}
 			}
 
@@ -8717,7 +8681,7 @@
 		}, {
 			key: 'hasBeenSet',
 			value: function hasBeenSet(name) {
-				var info = this.stateInfo_[name];
+				var info = this.getStateInfo(name);
 				return info.state === State.KeyStates.INITIALIZED || this.hasInitialValue_(name);
 			}
 
@@ -8731,7 +8695,7 @@
 		}, {
 			key: 'hasInitialValue_',
 			value: function hasInitialValue_(name) {
-				return this.stateInfo_[name].hasOwnProperty('initialValue');
+				return this.initialValues_.hasOwnProperty(name);
 			}
 
 			/**
@@ -8744,7 +8708,7 @@
 			key: 'hasStateKey',
 			value: function hasStateKey(key) {
 				if (!this.warnIfDisposed_(key)) {
-					return !!this.stateInfo_[key];
+					return !!this.stateConfigs_[key];
 				}
 			}
 
@@ -8760,13 +8724,13 @@
 			key: 'informChange_',
 			value: function informChange_(name, prevVal) {
 				if (this.shouldInformChange_(name, prevVal)) {
-					var data = {
+					var data = _metal.object.mixin({
 						key: name,
 						newVal: this.get(name),
 						prevVal: prevVal
-					};
-					this.emit(name + 'Changed', data);
-					this.emit('stateKeyChanged', data);
+					}, this.eventData_);
+					this.context_.emit(name + 'Changed', data);
+					this.context_.emit('stateKeyChanged', data);
 					this.scheduleBatchEvent_(data);
 				}
 			}
@@ -8780,7 +8744,7 @@
 		}, {
 			key: 'initStateKey_',
 			value: function initStateKey_(name) {
-				var info = this.stateInfo_[name];
+				var info = this.getStateInfo(name);
 				if (info.state !== State.KeyStates.UNINITIALIZED) {
 					return;
 				}
@@ -8801,34 +8765,16 @@
 	   */
 
 		}, {
-			key: 'mergeInvalidKeys_',
+			key: 'removeStateKey',
 
-
-			/**
-	   * Merges the values of the `INVALID_KEYS` static for the whole hierarchy of
-	   * the current instance.
-	   * @protected
-	   */
-			value: function mergeInvalidKeys_() {
-				(0, _metal.mergeSuperClassesProperty)(this.constructor, 'INVALID_KEYS', function (values) {
-					return _metal.array.flatten(values).reduce(function (merged, val) {
-						if (val) {
-							merged[val] = true;
-						}
-						return merged;
-					}, {});
-				});
-			}
 
 			/**
 	   * Removes the requested state key.
 	   * @param {string} name The name of the key.
 	   */
-
-		}, {
-			key: 'removeStateKey',
 			value: function removeStateKey(name) {
 				this.stateInfo_[name] = null;
+				this.stateConfigs_[name] = null;
 				delete this.obj_[name];
 			}
 
@@ -8843,9 +8789,9 @@
 			value: function scheduleBatchEvent_(changeData) {
 				if (!this.scheduledBatchData_) {
 					_metal.async.nextTick(this.emitBatchEvent_, this);
-					this.scheduledBatchData_ = {
+					this.scheduledBatchData_ = _metal.object.mixin({
 						changes: {}
-					};
+					}, this.eventData_);
 				}
 
 				var name = changeData.key;
@@ -8884,13 +8830,24 @@
 		}, {
 			key: 'setDefaultValue',
 			value: function setDefaultValue(name) {
-				var config = this.stateInfo_[name].config;
+				var config = this.stateConfigs_[name];
 
 				if (config.value !== undefined) {
 					this.set(name, config.value);
 				} else {
 					this.set(name, this.callFunction_(config.valueFn));
 				}
+			}
+
+			/**
+	   * Sets data to be sent with all events emitted from this instance.
+	   * @param {Object}
+	   */
+
+		}, {
+			key: 'setEventData',
+			value: function setEventData(data) {
+				this.eventData_ = data;
 			}
 
 			/**
@@ -8904,9 +8861,8 @@
 			key: 'setInitialValue_',
 			value: function setInitialValue_(name) {
 				if (this.hasInitialValue_(name)) {
-					var info = this.stateInfo_[name];
-					this.set(name, info.initialValue);
-					info.initialValue = undefined;
+					this.set(name, this.initialValues_[name]);
+					this.initialValues_[name] = undefined;
 				}
 			}
 
@@ -8938,7 +8894,7 @@
 					return _this2.set(name, values[name]);
 				});
 				if (opt_callback && this.scheduledBatchData_) {
-					this.once('stateChanged', opt_callback);
+					this.context_.once('stateChanged', opt_callback);
 				}
 			}
 
@@ -8958,7 +8914,7 @@
 					return;
 				}
 
-				var info = this.stateInfo_[name];
+				var info = this.getStateInfo(name);
 				if (!this.hasInitialValue_(name) && info.state === State.KeyStates.UNINITIALIZED) {
 					info.state = State.KeyStates.INITIALIZED;
 				}
@@ -8986,7 +8942,7 @@
 		}, {
 			key: 'shouldInformChange_',
 			value: function shouldInformChange_(name, prevVal) {
-				var info = this.stateInfo_[name];
+				var info = this.getStateInfo(name);
 				return info.state === State.KeyStates.INITIALIZED && ((0, _metal.isObject)(prevVal) || prevVal !== this.get(name));
 			}
 
@@ -8999,9 +8955,8 @@
 		}, {
 			key: 'validateInitialValue_',
 			value: function validateInitialValue_(name) {
-				var info = this.stateInfo_[name];
-				if (this.hasInitialValue_(name) && !this.callValidator_(name, info.initialValue)) {
-					delete info.initialValue;
+				if (this.hasInitialValue_(name) && !this.callValidator_(name, this.initialValues_[name])) {
+					delete this.initialValues_[name];
 				}
 			}
 
@@ -9017,8 +8972,7 @@
 		}, {
 			key: 'validateKeyValue_',
 			value: function validateKeyValue_(name, value) {
-				var info = this.stateInfo_[name];
-
+				var info = this.getStateInfo(name);
 				return info.state === State.KeyStates.INITIALIZING || this.callValidator_(name, value);
 			}
 
@@ -9061,22 +9015,14 @@
 		return State;
 	}(_metalEvents.EventEmitter);
 
-	/**
-	 * A list with state key names that will automatically be rejected as invalid.
-	 * Subclasses can define their own invalid keys by setting this static on their
-	 * constructors, which will be merged together and handled automatically.
-	 * @type {!Array<string>}
-	 */
-
-
-	State.INVALID_KEYS = ['state', 'stateKey'];
+	State.STATE_REF_KEY = '__METAL_STATE_REF_KEY__';
 
 	/**
 	 * Constants that represent the states that a state key can be in.
 	 * @type {!Object}
 	 */
 	State.KeyStates = {
-		UNINITIALIZED: 0,
+		UNINITIALIZED: undefined,
 		INITIALIZING: 1,
 		INITIALIZED: 2
 	};
@@ -9085,7 +9031,7 @@
 
 /***/ },
 
-/***/ 362:
+/***/ 341:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -9096,7 +9042,7 @@
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _metalEvents = __webpack_require__(344);
+	var _metal = __webpack_require__(305);
 
 	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
@@ -9110,8 +9056,8 @@
 	 * Base class that component renderers should extend from. It defines the
 	 * required methods all renderers should have.
 	 */
-	var ComponentRenderer = function (_EventEmitter) {
-		_inherits(ComponentRenderer, _EventEmitter);
+	var ComponentRenderer = function (_Disposable) {
+		_inherits(ComponentRenderer, _Disposable);
 
 		/**
 	  * Constructor function for `ComponentRenderer`.
@@ -9125,87 +9071,33 @@
 
 			_this.component_ = component;
 
-			_this.componentRendererEvents_ = new _metalEvents.EventHandler();
-			_this.componentRendererEvents_.add(_this.component_.once('render', _this.render.bind(_this)));
-			_this.on('rendered', _this.handleRendered_);
-			component.on('dataManagerCreated', _this.handleDataManagerCreated_.bind(_this));
+			if (_this.component_.constructor.SYNC_UPDATES_MERGED) {
+				_this.component_.on('stateKeyChanged', _this.handleRendererStateKeyChanged_.bind(_this));
+			}
 			return _this;
 		}
 
 		/**
-	  * @inheritDoc
+	  * Returns this renderer's component.
+	  * @return {!Component}
 	  */
 
 
 		_createClass(ComponentRenderer, [{
-			key: 'disposeInternal',
-			value: function disposeInternal() {
-				this.componentRendererEvents_.removeAllListeners();
-				this.componentRendererEvents_ = null;
-			}
-
-			/**
-	   * Returns this renderer's component.
-	   * @return {!Component}
-	   */
-
-		}, {
 			key: 'getComponent',
 			value: function getComponent() {
 				return this.component_;
 			}
 
 			/**
-	   * Handles a `dataManagerCreated` event from the component. Listens to events
-	   * on the manager that has been created.
-	   * @protected
+	   * Returns extra configuration for data that should be added to the manager.
+	   * @return {Object}
 	   */
 
 		}, {
-			key: 'handleDataManagerCreated_',
-			value: function handleDataManagerCreated_() {
-				var manager = this.component_.getDataManager();
-				if (this.component_.constructor.SYNC_UPDATES_MERGED) {
-					this.componentRendererEvents_.add(manager.on('dataPropChanged', this.handleManagerDataPropChanged_.bind(this)));
-				} else {
-					this.componentRendererEvents_.add(manager.on('dataChanged', this.handleManagerDataChanged_.bind(this)));
-				}
-			}
-
-			/**
-	   * Handles a `dataChanged` event from the component's data manager. Calls the
-	   * `update` function if the component has already been rendered for the first
-	   * time.
-	   * @param {!Object<string, Object>} changes Object containing the names
-	   *     of all changed state keys, each mapped to an object with its new
-	   *     (newVal) and previous (prevVal) values.
-	   * @protected
-	   */
-
-		}, {
-			key: 'handleManagerDataChanged_',
-			value: function handleManagerDataChanged_(changes) {
-				if (this.shouldRerender_()) {
-					this.update(changes);
-				}
-			}
-
-			/**
-	   * Handles a `dataPropChanged` event from the component's data manager. This
-	   * is similar to `handleManagerDataChanged_`, but only called for
-	   * components that have requested updates to happen synchronously.
-	   * @param {!{key: string, newVal: *, prevVal: *}} data
-	   * @protected
-	   */
-
-		}, {
-			key: 'handleManagerDataPropChanged_',
-			value: function handleManagerDataPropChanged_(data) {
-				if (this.shouldRerender_()) {
-					this.update({
-						changes: _defineProperty({}, data.key, data)
-					});
-				}
+			key: 'getExtraDataConfig',
+			value: function getExtraDataConfig() {
+				return null;
 			}
 
 			/**
@@ -9216,7 +9108,28 @@
 		}, {
 			key: 'handleRendered_',
 			value: function handleRendered_() {
+				var firstRender = !this.isRendered_;
 				this.isRendered_ = true;
+				this.component_.rendered(firstRender);
+				this.component_.emit('rendered', firstRender);
+			}
+
+			/**
+	   * Handles a `dataPropChanged` event from the component's data manager. This
+	   * is similar to `handleRendererStateChanged_`, but only called for
+	   * components that have requested updates to happen synchronously.
+	   * @param {!{key: string, newVal: *, prevVal: *}} data
+	   * @protected
+	   */
+
+		}, {
+			key: 'handleRendererStateKeyChanged_',
+			value: function handleRendererStateKeyChanged_(data) {
+				if (this.shouldRerender_()) {
+					this.update({
+						changes: _defineProperty({}, data.key, data)
+					});
+				}
 			}
 
 			/**
@@ -9229,7 +9142,7 @@
 				if (!this.component_.element) {
 					this.component_.element = document.createElement('div');
 				}
-				this.emit('rendered', !this.isRendered_);
+				this.handleRendered_();
 			}
 
 			/**
@@ -9242,6 +9155,21 @@
 			key: 'shouldRerender_',
 			value: function shouldRerender_() {
 				return this.isRendered_ && !this.skipUpdates_;
+			}
+
+			/**
+	   * Rerenders the component according to the given changes.
+	   * @param {!Object<string, Object>} changes Object containing the names
+	   *     of all changed state keys, each mapped to an object with its new
+	   *     (newVal) and previous (prevVal) values.
+	   */
+
+		}, {
+			key: 'sync',
+			value: function sync(changes) {
+				if (!this.component_.constructor.SYNC_UPDATES_MERGED && this.shouldRerender_()) {
+					this.update(changes);
+				}
 			}
 
 			/**
@@ -9278,13 +9206,13 @@
 		}]);
 
 		return ComponentRenderer;
-	}(_metalEvents.EventEmitter);
+	}(_metal.Disposable);
 
 	exports.default = ComponentRenderer;
 
 /***/ },
 
-/***/ 363:
+/***/ 342:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -9295,7 +9223,7 @@
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _metal = __webpack_require__(326);
+	var _metal = __webpack_require__(305);
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -9369,7 +9297,7 @@
 
 /***/ },
 
-/***/ 364:
+/***/ 343:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -9380,9 +9308,9 @@
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	__webpack_require__(338);
+	__webpack_require__(317);
 
-	var _metal = __webpack_require__(326);
+	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -9402,7 +9330,18 @@
 	   * @return {!Object}
 	   */
 			value: function getOriginalFns() {
-				return fnStack[0];
+				return originalFns;
+			}
+
+			/**
+	   * Gets the original functions that are intercepted by `IncrementalDomAop`.
+	   * @return {!Object}
+	   */
+
+		}, {
+			key: 'getOriginalFn',
+			value: function getOriginalFn(name) {
+				return originalFns[name];
 			}
 
 			/**
@@ -9416,21 +9355,19 @@
 	   *     to the function that should intercept it. All interceptors will receive
 	   *     the original function as the first argument, the actual arguments from
 	   *     from the original call following it.
+	   * @param {Object=} opt_context Optional context that will be used when
+	   *     calling the given functions.
 	   */
 
 		}, {
 			key: 'startInterception',
-			value: function startInterception(fns) {
-				var originals = IncrementalDomAop.getOriginalFns();
-				fns = _metal.object.map(fns, function (name, value) {
-					return value.bind(null, originals[name]);
-				});
-				fnStack.push(_metal.object.mixin({}, originals, fns, {
-					attr: fnAttr,
-					elementOpenEnd: fnOpenEnd,
-					elementOpenStart: fnOpenStart,
-					elementVoid: fnVoid
-				}));
+			value: function startInterception(fns, opt_context) {
+				fns.attr = fnAttr;
+				fns.elementOpenEnd = fnOpenEnd;
+				fns.elementOpenStart = fnOpenStart;
+				fns.elementVoid = fnVoid;
+				fns.context = opt_context;
+				fnStack.push(fns);
 			}
 
 			/**
@@ -9441,16 +9378,14 @@
 		}, {
 			key: 'stopInterception',
 			value: function stopInterception() {
-				if (fnStack.length > 1) {
-					fnStack.pop();
-				}
+				fnStack.pop();
 			}
 		}]);
 
 		return IncrementalDomAop;
 	}();
 
-	var fnStack = [{
+	var originalFns = {
 		attr: IncrementalDOM.attr,
 		attributes: IncrementalDOM.attributes[IncrementalDOM.symbols.default],
 		elementClose: IncrementalDOM.elementClose,
@@ -9459,7 +9394,9 @@
 		elementOpenStart: IncrementalDOM.elementOpenStart,
 		elementVoid: IncrementalDOM.elementVoid,
 		text: IncrementalDOM.text
-	}];
+	};
+
+	var fnStack = [];
 
 	var collectedArgs = [];
 
@@ -9472,37 +9409,48 @@
 	}
 
 	function fnOpenEnd() {
-		return getFn('elementOpen').apply(null, collectedArgs);
+		var _IncrementalDOM;
+
+		return (_IncrementalDOM = IncrementalDOM).elementOpen.apply(_IncrementalDOM, _toConsumableArray(collectedArgs));
 	}
 
-	function fnVoid(tag) {
-		getFn('elementOpen').apply(null, arguments);
-		return getFn('elementClose')(tag);
+	function fnVoid() {
+		IncrementalDOM.elementOpen.apply(null, arguments);
+		return IncrementalDOM.elementClose.apply(null, arguments);
 	}
 
-	function getFn(name) {
-		return fnStack[fnStack.length - 1][name];
+	function getStack() {
+		return fnStack.length > 0 ? fnStack[fnStack.length - 1] : null;
 	}
 
-	function handleCall(name) {
-		return getFn(name).apply(null, _metal.array.slice(arguments, 1));
+	function buildHandleCall(name) {
+		var data = { name: name };
+		var fn = handleCall.bind(data);
+		return fn;
 	}
 
-	IncrementalDOM.attr = handleCall.bind(null, 'attr');
-	IncrementalDOM.elementClose = handleCall.bind(null, 'elementClose');
-	IncrementalDOM.elementOpen = handleCall.bind(null, 'elementOpen');
-	IncrementalDOM.elementOpenEnd = handleCall.bind(null, 'elementOpenEnd');
-	IncrementalDOM.elementOpenStart = handleCall.bind(null, 'elementOpenStart');
-	IncrementalDOM.elementVoid = handleCall.bind(null, 'elementVoid');
-	IncrementalDOM.text = handleCall.bind(null, 'text');
+	function handleCall() {
+		var name = this.name; // jshint ignore:line
+		var stack = getStack();
+		var fn = stack && stack[name] || originalFns[name];
+		return fn.apply(stack ? stack.context : null, arguments);
+	}
 
-	IncrementalDOM.attributes[IncrementalDOM.symbols.default] = handleCall.bind(null, 'attributes');
+	IncrementalDOM.attr = buildHandleCall('attr');
+	IncrementalDOM.elementClose = buildHandleCall('elementClose');
+	IncrementalDOM.elementOpen = buildHandleCall('elementOpen');
+	IncrementalDOM.elementOpenEnd = buildHandleCall('elementOpenEnd');
+	IncrementalDOM.elementOpenStart = buildHandleCall('elementOpenStart');
+	IncrementalDOM.elementVoid = buildHandleCall('elementVoid');
+	IncrementalDOM.text = buildHandleCall('text');
+
+	IncrementalDOM.attributes[IncrementalDOM.symbols.default] = buildHandleCall('attributes');
 
 	exports.default = IncrementalDomAop;
 
 /***/ },
 
-/***/ 365:
+/***/ 344:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -9513,13 +9461,13 @@
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _metal = __webpack_require__(326);
+	var _metal = __webpack_require__(305);
 
-	var _IncrementalDomAop = __webpack_require__(364);
+	var _IncrementalDomAop = __webpack_require__(343);
 
 	var _IncrementalDomAop2 = _interopRequireDefault(_IncrementalDomAop);
 
-	var _IncrementalDomUtils = __webpack_require__(366);
+	var _IncrementalDomUtils = __webpack_require__(345);
 
 	var _IncrementalDomUtils2 = _interopRequireDefault(_IncrementalDomUtils);
 
@@ -9596,21 +9544,22 @@
 	   * @param {!{args: Array, children: !Array, isText: ?boolean}}
 	   * @param {function()=} opt_skipNode Optional function that is called for
 	   *     each node to be rendered. If it returns true, the node will be skipped.
+	   * @param {Object=} opt_context Optional context that will be used when
+	   *     calling the given functions.
 	   * @protected
 	   */
 
 		}, {
 			key: 'render',
-			value: function render(tree, opt_skipNode) {
+			value: function render(tree, opt_skipNode, opt_context) {
 				if (isCapturing_) {
 					// If capturing, just add the node directly to the captured tree.
 					addChildToTree(tree);
 					return;
 				}
 
-				currNodeOwner_ = IncrementalDomChildren.getOwner(tree);
-				if (opt_skipNode && opt_skipNode(tree)) {
-					currNodeOwner_ = null;
+				currNodeOwner_ = null;
+				if (opt_skipNode && opt_skipNode.call(opt_context, tree)) {
 					return;
 				}
 
@@ -9620,15 +9569,16 @@
 					IncrementalDOM.text.apply(null, args);
 				} else {
 					var _args = _IncrementalDomUtils2.default.buildCallFromConfig(tree.tag, tree.props);
+					currNodeOwner_ = IncrementalDomChildren.getOwner(tree);
 					IncrementalDOM.elementOpen.apply(null, _args);
+					currNodeOwner_ = null;
 					if (tree.props.children) {
 						for (var i = 0; i < tree.props.children.length; i++) {
-							IncrementalDomChildren.render(tree.props.children[i], opt_skipNode);
+							IncrementalDomChildren.render(tree.props.children[i], opt_skipNode, opt_context);
 						}
 					}
 					IncrementalDOM.elementClose(tree.tag);
 				}
-				currNodeOwner_ = null;
 			}
 		}]);
 
@@ -9683,7 +9633,7 @@
 		if (currentParent_ === tree_) {
 			_IncrementalDomAop2.default.stopInterception();
 			isCapturing_ = false;
-			callback_(tree_);
+			callback_.call(renderer_, tree_);
 			callback_ = null;
 			currentParent_ = null;
 			renderer_ = null;
@@ -9699,9 +9649,9 @@
 	 * @param {!function()} originalFn The original function before interception.
 	 * @protected
 	 */
-	function handleInterceptedOpenCall_(originalFn) {
-		for (var _len = arguments.length, args = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-			args[_key - 1] = arguments[_key];
+	function handleInterceptedOpenCall_() {
+		for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+			args[_key] = arguments[_key];
 		}
 
 		currentParent_ = addChildCallToTree_(args);
@@ -9712,9 +9662,9 @@
 	 * @param {!function()} originalFn The original function before interception.
 	 * @protected
 	 */
-	function handleInterceptedTextCall_(originalFn) {
-		for (var _len2 = arguments.length, args = Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {
-			args[_key2 - 1] = arguments[_key2];
+	function handleInterceptedTextCall_() {
+		for (var _len2 = arguments.length, args = Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+			args[_key2] = arguments[_key2];
 		}
 
 		addChildCallToTree_(args, true);
@@ -9732,7 +9682,7 @@
 
 /***/ },
 
-/***/ 366:
+/***/ 345:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -9743,7 +9693,7 @@
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _metal = __webpack_require__(326);
+	var _metal = __webpack_require__(305);
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -9816,7 +9766,7 @@
 
 /***/ },
 
-/***/ 367:
+/***/ 346:
 /***/ function(module, exports) {
 
 	'use strict';
@@ -9888,7 +9838,7 @@
 
 /***/ },
 
-/***/ 368:
+/***/ 347:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -9901,9 +9851,9 @@
 
 	var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-	var _metal = __webpack_require__(326);
+	var _metal = __webpack_require__(305);
 
-	var _metalIncrementalDom = __webpack_require__(337);
+	var _metalIncrementalDom = __webpack_require__(316);
 
 	var _metalIncrementalDom2 = _interopRequireDefault(_metalIncrementalDom);
 
@@ -9915,35 +9865,24 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var childrenCount = [];
-
 	/**
 	 * Renderer that handles JSX.
 	 */
-
 	var JSXRenderer = function (_IncrementalDomRender) {
 		_inherits(JSXRenderer, _IncrementalDomRender);
 
-		/**
-	  * @inheritDoc
-	  */
-		function JSXRenderer(comp) {
+		function JSXRenderer() {
 			_classCallCheck(this, JSXRenderer);
 
-			var _this = _possibleConstructorReturn(this, (JSXRenderer.__proto__ || Object.getPrototypeOf(JSXRenderer)).call(this, comp));
-
-			_this.on(_metalIncrementalDom2.default.ELEMENT_OPENED, _this.handleJSXElementOpened_);
-			_this.on(_metalIncrementalDom2.default.ELEMENT_CLOSED, _this.handleJSXElementClosed_);
-			return _this;
+			return _possibleConstructorReturn(this, (JSXRenderer.__proto__ || Object.getPrototypeOf(JSXRenderer)).apply(this, arguments));
 		}
-
-		/**
-	  * @inheritDoc
-	  */
-
 
 		_createClass(JSXRenderer, [{
 			key: 'buildShouldUpdateArgs_',
+
+			/**
+	   * @inheritDoc
+	   */
 			value: function buildShouldUpdateArgs_() {
 				return [this.changes_, this.propChanges_];
 			}
@@ -9960,62 +9899,41 @@
 			}
 
 			/**
+	   * Called when generating a key for the next dom element to be created via
+	   * incremental dom. Adds keys to elements that don't have one yet, according
+	   * to their position in the parent. This helps use cases that use
+	   * conditionally rendered elements, which is very common in JSX.
+	   * @protected
+	   */
+
+		}, {
+			key: 'generateKey_',
+			value: function generateKey_(key) {
+				if (!(0, _metal.isDefAndNotNull)(key)) {
+					var element = this.component_.element;
+					if (this.isPatching_ && IncrementalDOM.currentPointer() === element && element) {
+						if (element.__incrementalDOMData) {
+							key = element.__incrementalDOMData.key;
+						}
+					} else {
+						key = JSXRenderer.KEY_PREFIX + JSXRenderer.incElementCount();
+					}
+				}
+				return key;
+			}
+
+			/**
 	   * @inheritDoc
 	   */
 
 		}, {
-			key: 'handleDataPropChanged_',
-			value: function handleDataPropChanged_(data) {
-				if (data.type === 'props') {
-					this.propChanges_[data.key] = data;
+			key: 'handleStateKeyChanged_',
+			value: function handleStateKeyChanged_(data) {
+				if (data.type === 'state') {
+					_get(JSXRenderer.prototype.__proto__ || Object.getPrototypeOf(JSXRenderer.prototype), 'handleStateKeyChanged_', this).call(this, data);
 				} else {
-					_get(JSXRenderer.prototype.__proto__ || Object.getPrototypeOf(JSXRenderer.prototype), 'handleDataPropChanged_', this).call(this, data);
+					this.propChanges_[data.key] = data;
 				}
-			}
-
-			/**
-	   * Called when an element is opened during render via incremental dom. Adds
-	   * keys to elements that don't have one yet, according to their position in
-	   * the parent. This helps use cases that use conditionally rendered elements,
-	   * which is very common in JSX.
-	   * @param {!{args: !Array}} data
-	   * @protected
-	   */
-
-		}, {
-			key: 'handleJSXElementOpened_',
-			value: function handleJSXElementOpened_(_ref) {
-				var args = _ref.args;
-
-				var count = 0;
-				if (childrenCount.length > 0) {
-					count = ++childrenCount[childrenCount.length - 1];
-				}
-
-				if (!(0, _metal.isDefAndNotNull)(args[1])) {
-					if (count) {
-						args[1] = JSXRenderer.KEY_PREFIX + count;
-					} else {
-						// If this is the first node being patched, just repeat the key it
-						// used before (if it has been used before).
-						var node = IncrementalDOM.currentPointer();
-						if (node && node.__incrementalDOMData) {
-							args[1] = node.__incrementalDOMData.key;
-						}
-					}
-				}
-				childrenCount.push(0);
-			}
-
-			/**
-	   * Called when an element is closed during render via incremental dom.
-	   * @protected
-	   */
-
-		}, {
-			key: 'handleJSXElementClosed_',
-			value: function handleJSXElementClosed_() {
-				childrenCount.pop();
 			}
 
 			/**
@@ -10029,14 +9947,19 @@
 			}
 
 			/**
+	   * Increments the number of children in the current element.
+	   */
+
+		}, {
+			key: 'renderIncDom',
+
+
+			/**
 	   * Overrides the original method from `IncrementalDomRenderer` to handle the
 	   * case where developers return a child node directly from the "render"
 	   * function.
 	   * @override
 	   */
-
-		}, {
-			key: 'renderIncDom',
 			value: function renderIncDom() {
 				if (this.component_.render) {
 					iDOMHelpers.renderArbitrary(this.component_.render());
@@ -10046,16 +9969,32 @@
 			}
 
 			/**
+	   * @inheritDoc
+	   */
+
+		}, {
+			key: 'resetNodeData_',
+			value: function resetNodeData_(node) {
+				_get(JSXRenderer.prototype.__proto__ || Object.getPrototypeOf(JSXRenderer.prototype), 'resetNodeData_', this).call(this, node);
+				node.__metalJsxCount = 0;
+			}
+
+			/**
 	   * Skips the current child in the count (used when a conditional render
 	   * decided not to render anything).
 	   */
 
 		}], [{
+			key: 'incElementCount',
+			value: function incElementCount() {
+				var node = IncrementalDOM.currentElement();
+				node.__metalJsxCount = (node.__metalJsxCount || 0) + 1;
+				return node.__metalJsxCount;
+			}
+		}, {
 			key: 'skipChild',
 			value: function skipChild() {
-				if (childrenCount.length > 0) {
-					childrenCount[childrenCount.length - 1]++;
-				}
+				JSXRenderer.incElementCount();
 			}
 		}]);
 
@@ -10069,7 +10008,7 @@
 
 /***/ },
 
-/***/ 369:
+/***/ 348:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -10078,211 +10017,131 @@
 		value: true
 	});
 
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	var _metal = __webpack_require__(305);
 
-	var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
+	var _metalComponent = __webpack_require__(334);
 
-	var _metal = __webpack_require__(326);
-
-	var _metalComponent = __webpack_require__(355);
-
-	var _metalState = __webpack_require__(358);
+	var _metalState = __webpack_require__(337);
 
 	var _metalState2 = _interopRequireDefault(_metalState);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	// TODO: Maybe change this to use regular `class` and `extend`, but export an
+	// instance of it instead of the constructor (though we need the constructor
+	// as a named export at least so we can extend it in JSXDataManager).
 
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	var JSXDataManager = Object.create(_metalComponent.ComponentDataManager);
+	_metal.object.mixin(JSXDataManager, {
+		/**
+	  * Manually adds props that weren't configured via `PROPS`.
+	  * @param {!Component} component
+	  * @param {!State} props
+	  * @param {!Object} data
+	  * @protected
+	  */
+		addUnconfiguredProps_: function addUnconfiguredProps_(component, props, data) {
+			var keys = Object.keys(data);
+			for (var i = 0; i < keys.length; i++) {
+				if (!props.hasStateKey(keys[i])) {
+					component.props[keys[i]] = data[keys[i]];
+				}
+			}
+		},
 
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var JSXDataManager = function (_ComponentDataManager) {
-		_inherits(JSXDataManager, _ComponentDataManager);
+		/**
+	  * Overrides the original method so that we can have two separate `State`
+	  * instances: one responsible for `state` and another for `props`.
+	  * @param {!Component} comp
+	  * @param {!Object} config
+	  * @protected
+	  * @override
+	  */
+		createState_: function createState_(comp, config) {
+			var ctor = comp.constructor;
+			comp.props = {};
+			comp.state = {};
+			var data = this.getManagerData(comp);
 
-		function JSXDataManager() {
-			_classCallCheck(this, JSXDataManager);
+			(0, _metal.mergeSuperClassesProperty)(ctor, 'PROPS', _metalState2.default.mergeState);
+			data.props_ = new _metalState2.default(comp.getInitialConfig(), comp.props, comp);
+			data.props_.configState(_metal.object.mixin({}, config, comp.constructor.PROPS_MERGED));
+			this.addUnconfiguredProps_(comp, data.props_, comp.getInitialConfig());
 
-			return _possibleConstructorReturn(this, (JSXDataManager.__proto__ || Object.getPrototypeOf(JSXDataManager)).apply(this, arguments));
+			data.state_ = new _metalState2.default({}, comp.state, comp);
+			data.state_.setEventData({
+				type: 'state'
+			});
+			data.state_.configState(ctor.STATE_MERGED);
+		},
+
+
+		/**
+	  * @inheritDoc
+	  */
+		dispose: function dispose(component) {
+			var data = this.getManagerData(component);
+			data.props_.dispose();
+			_metalComponent.ComponentDataManager.dispose.call(this, component);
+		},
+
+
+		/**
+	  * Overrides the original method so we can get properties from `props` by
+	  * default.
+	  * @param {!Component} component
+	  * @param {string} name
+	  * @return {*}
+	  * @override
+	  */
+		get: function get(component, name) {
+			return this.getManagerData(component).props_.get(name);
+		},
+
+
+		/**
+	  * Gets the `State` instance being used for "props".
+	  * @param {!Component} component
+	  * @return {!Object}
+	  */
+		getPropsInstance: function getPropsInstance(component) {
+			return this.getManagerData(component).props_;
+		},
+
+
+		/**
+	  * Overrides the original method so we can enable "sync" methods just for
+	  * `props`.
+	  * @param {!Component} component
+	  * @return {!Array<string>}
+	  * @override
+	  */
+		getSyncKeys: function getSyncKeys(component) {
+			return this.getManagerData(component).props_.getStateKeys();
+		},
+
+
+		/**
+	  * Overrides the original method so we can replace values in `props`.
+	  * @param {!Component} component
+	  * @param {!Object} data
+	  * @override
+	  */
+		replaceNonInternal: function replaceNonInternal(component, data) {
+			var prevProps;
+			if (component.propsChanged) {
+				prevProps = _metal.object.mixin({}, component.props);
+			}
+
+			var props = this.getManagerData(component).props_;
+			_metalComponent.ComponentDataManager.replaceNonInternal.call(this, component, data, props);
+			this.addUnconfiguredProps_(component, props, data);
+			if (component.propsChanged) {
+				component.propsChanged(prevProps);
+			}
 		}
-
-		_createClass(JSXDataManager, [{
-			key: 'add',
-
-			/**
-	   * Overrides the original method so we can add properties to `props` by default.
-	   * @param {string} name
-	   * @param {!Object} config
-	   * @param {*} opt_initialValue
-	   * @override
-	   */
-			value: function add() {
-				var _props_;
-
-				(_props_ = this.props_).addToState.apply(_props_, arguments);
-			}
-
-			/**
-	   * Manually adds props that weren't configured via `PROPS`.
-	   * @param {!Object} data
-	   * @protected
-	   */
-
-		}, {
-			key: 'addUnconfiguredProps_',
-			value: function addUnconfiguredProps_(data) {
-				var keys = Object.keys(data);
-				for (var i = 0; i < keys.length; i++) {
-					if (!this.props_.hasStateKey(keys[i])) {
-						this.component_.props[keys[i]] = data[keys[i]];
-					}
-				}
-			}
-
-			/**
-	   * Overrides the original method so that the main `State` instance's data can
-	   * come from `PROPS` instead of `STATE`.
-	   * @param {!Object} data
-	   * @return {!Object}
-	   * @protected
-	   * @override
-	   */
-
-		}, {
-			key: 'buildStateInstanceData_',
-			value: function buildStateInstanceData_(data) {
-				var ctor = this.component_.constructor;
-				(0, _metal.mergeSuperClassesProperty)(ctor, 'PROPS', _metalState2.default.mergeState);
-				return _metal.object.mixin({}, data, this.component_.constructor.PROPS_MERGED);
-			}
-
-			/**
-	   * Overrides the original method so that we can have two separate `State`
-	   * instances: one responsible for `state` and another for `props`.
-	   * @param {!Object} data
-	   * @protected
-	   * @override
-	   */
-
-		}, {
-			key: 'createState_',
-			value: function createState_(data) {
-				var _this2 = this;
-
-				this.component_.props = {};
-				_get(JSXDataManager.prototype.__proto__ || Object.getPrototypeOf(JSXDataManager.prototype), 'createState_', this).call(this, data, this.component_.props);
-				this.props_ = this.state_;
-				this.addUnconfiguredProps_(this.component_.getInitialConfig());
-
-				this.component_.state = {};
-				this.state_ = new _metalState2.default({}, this.component_.state, this.component_, {
-					internal: true
-				});
-				this.state_.addToState(this.component_.constructor.STATE_MERGED);
-
-				var listener = function listener() {
-					for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-						args[_key] = arguments[_key];
-					}
-
-					return _this2.emit_.apply(_this2, args.concat(['state']));
-				};
-				this.state_.on('stateChanged', listener);
-				this.state_.on('stateKeyChanged', listener);
-			}
-
-			/**
-	   * @inheritDoc
-	   */
-
-		}, {
-			key: 'disposeInternal',
-			value: function disposeInternal() {
-				_get(JSXDataManager.prototype.__proto__ || Object.getPrototypeOf(JSXDataManager.prototype), 'disposeInternal', this).call(this);
-
-				this.props_.dispose();
-				this.props_ = null;
-			}
-
-			/**
-	   * Overrides the original method so we can add the data type to the event.
-	   * @param {!Object} data
-	   * @param {!Object} event
-	   * @param {string=} opt_type Either 'props' or 'state'.
-	   * @protected
-	   * @override
-	   */
-
-		}, {
-			key: 'emit_',
-			value: function emit_(data, event) {
-				var opt_type = arguments.length <= 2 || arguments[2] === undefined ? 'props' : arguments[2];
-
-				data.type = opt_type;
-				_get(JSXDataManager.prototype.__proto__ || Object.getPrototypeOf(JSXDataManager.prototype), 'emit_', this).call(this, data, event);
-			}
-
-			/**
-	   * Overrides the original method so we can get properties from `props` by
-	   * default.
-	   * @param {string} name
-	   * @return {*}
-	   * @override
-	   */
-
-		}, {
-			key: 'get',
-			value: function get(name) {
-				return this.props_.get(name);
-			}
-
-			/**
-	   * Gets the `State` instance being used for "props".
-	   * @return {!Object}
-	   */
-
-		}, {
-			key: 'getPropsInstance',
-			value: function getPropsInstance() {
-				return this.props_;
-			}
-
-			/**
-	   * Overrides the original method so we can enable "sync" methods just for
-	   * `props`.
-	   * @return {!Array<string>}
-	   * @override
-	   */
-
-		}, {
-			key: 'getSyncKeys',
-			value: function getSyncKeys() {
-				return this.props_.getStateKeys();
-			}
-
-			/**
-	   * Overrides the original method so we can replace values in `props`.
-	   * @param {!Object} data
-	   * @override
-	   */
-
-		}, {
-			key: 'replaceNonInternal',
-			value: function replaceNonInternal(data) {
-				var prevProps = _metal.object.mixin({}, this.component_.props);
-				_metalComponent.ComponentDataManager.replaceNonInternal(data, this.props_);
-				this.addUnconfiguredProps_(data);
-				if (this.component_.propsChanged) {
-					this.component_.propsChanged(prevProps);
-				}
-			}
-		}]);
-
-		return JSXDataManager;
-	}(_metalComponent.ComponentDataManager);
-
-	JSXDataManager.BLACKLIST = {};
+	});
 
 	exports.default = JSXDataManager;
 
