@@ -426,11 +426,11 @@
 	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 	exports.abstractMethod = abstractMethod;
-	exports.collectSuperClassesProperty = collectSuperClassesProperty;
 	exports.disableCompatibilityMode = disableCompatibilityMode;
 	exports.enableCompatibilityMode = enableCompatibilityMode;
 	exports.getCompatibilityModeData = getCompatibilityModeData;
 	exports.getFunctionName = getFunctionName;
+	exports.getStaticProperty = getStaticProperty;
 	exports.getUid = getUid;
 	exports.identityFunction = identityFunction;
 	exports.isBoolean = isBoolean;
@@ -445,7 +445,6 @@
 	exports.isObject = isObject;
 	exports.isPromise = isPromise;
 	exports.isString = isString;
-	exports.mergeSuperClassesProperty = mergeSuperClassesProperty;
 	exports.nullFunction = nullFunction;
 	var compatibilityModeData_ = void 0;
 
@@ -475,24 +474,6 @@
 	 */
 	function abstractMethod() {
 	  throw Error('Unimplemented abstract method');
-	}
-
-	/**
-	 * Loops constructor super classes collecting its properties values. If
-	 * property is not available on the super class `undefined` will be
-	 * collected as value for the class hierarchy position.
-	 * @param {!function()} constructor Class constructor.
-	 * @param {string} propertyName Property name to be collected.
-	 * @return {Array.<*>} Array of collected values.
-	 * TODO(*): Rethink superclass loop.
-	 */
-	function collectSuperClassesProperty(constructor, propertyName) {
-	  var propertyValues = [constructor[propertyName]];
-	  while (constructor.__proto__ && !constructor.__proto__.isPrototypeOf(Function)) {
-	    constructor = constructor.__proto__;
-	    propertyValues.push(constructor[propertyName]);
-	  }
-	  return propertyValues;
 	}
 
 	/**
@@ -540,6 +521,17 @@
 	}
 
 	/**
+	 * Returns the first argument if it's truthy, or the second otherwise.
+	 * @param {*} a
+	 * @param {*} b
+	 * @return {*}
+	 * @protected
+	 */
+	function getFirstTruthy_(a, b) {
+	  return a || b;
+	}
+
+	/**
 	 * Gets the name of the given function. If the current browser doesn't
 	 * support the `name` property, this will calculate it from the function's
 	 * content string.
@@ -552,6 +544,33 @@
 	    fn.name = str.substring(9, str.indexOf('('));
 	  }
 	  return fn.name;
+	}
+
+	/**
+	 * Gets the value of a static property in the given class. The value will be
+	 * inherited from ancestors as expected, unless a custom merge function is given,
+	 * which can change how the super classes' value for that property will be merged
+	 * together.
+	 * The final merged value will be stored in another property, so that it won't
+	 * be recalculated even if this function is called multiple times.
+	 * @param {!function()} ctor Class constructor.
+	 * @param {string} propertyName Property name to be merged.
+	 * @param {function(*, *):*=} opt_mergeFn Function that receives the merged
+	 *     value of the property so far and the next value to be merged to it.
+	 *     Should return these two merged together. If not passed the final property
+	 *     will be the first truthy value among ancestors.
+	 */
+	function getStaticProperty(ctor, propertyName, opt_mergeFn) {
+	  var mergedName = propertyName + '_MERGED';
+	  if (!ctor.hasOwnProperty(mergedName)) {
+	    var merged = ctor.hasOwnProperty(propertyName) ? ctor[propertyName] : null;
+	    if (ctor.__proto__ && !ctor.__proto__.isPrototypeOf(Function)) {
+	      var mergeFn = opt_mergeFn || getFirstTruthy_;
+	      merged = mergeFn(merged, getStaticProperty(ctor.__proto__, propertyName, mergeFn));
+	    }
+	    ctor[mergedName] = merged;
+	  }
+	  return ctor[mergedName];
 	}
 
 	/**
@@ -693,32 +712,6 @@
 	 */
 	function isString(val) {
 	  return typeof val === 'string' || val instanceof String;
-	}
-
-	/**
-	 * Merges the values of a export function property a class with the values of that
-	 * property for all its super classes, and stores it as a new static
-	 * property of that class. If the export function property already existed, it won't
-	 * be recalculated.
-	 * @param {!function()} constructor Class constructor.
-	 * @param {string} propertyName Property name to be collected.
-	 * @param {function(*, *):*=} opt_mergeFn Function that receives an array filled
-	 *   with the values of the property for the current class and all its super classes.
-	 *   Should return the merged value to be stored on the current class.
-	 * @return {boolean} Returns true if merge happens, false otherwise.
-	 */
-	function mergeSuperClassesProperty(constructor, propertyName, opt_mergeFn) {
-	  var mergedName = propertyName + '_MERGED';
-	  if (constructor.hasOwnProperty(mergedName)) {
-	    return false;
-	  }
-
-	  var merged = collectSuperClassesProperty(constructor, propertyName);
-	  if (opt_mergeFn) {
-	    merged = opt_mergeFn(merged);
-	  }
-	  constructor[mergedName] = merged;
-	  return true;
 	}
 
 	/**
@@ -1743,7 +1736,7 @@
 			// functions each time.
 			_this.renderInsidePatchDontSkip_ = _this.renderInsidePatchDontSkip_.bind(_this);
 
-			if (!_this.component_.constructor.SYNC_UPDATES_MERGED) {
+			if (!_this.hasSyncUpdates()) {
 				// If the component is being updated synchronously we'll just reuse the
 				// `handleRendererStateKeyChanged_` function from `ComponentRenderer`.
 				_this.component_.on('stateKeyChanged', _this.handleStateKeyChanged_.bind(_this));
@@ -6930,16 +6923,11 @@
 	   */
 			_this.DEFAULT_ELEMENT_PARENT = document.body;
 
-			(0, _metal.mergeSuperClassesProperty)(_this.constructor, 'DATA_MANAGER', _metal.array.firstDefinedValue);
-			(0, _metal.mergeSuperClassesProperty)(_this.constructor, 'ELEMENT_CLASSES', _this.mergeElementClasses_);
-			(0, _metal.mergeSuperClassesProperty)(_this.constructor, 'RENDERER', _metal.array.firstDefinedValue);
-			(0, _metal.mergeSuperClassesProperty)(_this.constructor, 'SYNC_UPDATES', _metal.array.firstDefinedValue);
-
 			_this.setShouldUseFacade(true);
 			_this.element = _this.initialConfig_.element;
 
 			_this.renderer_ = _this.createRenderer();
-			_this.dataManager_ = _this.constructor.DATA_MANAGER_MERGED;
+			_this.dataManager_ = (0, _metal.getStaticProperty)(_this.constructor, 'DATA_MANAGER');
 			_this.dataManager_.setUp(_this, _metal.object.mixin({}, _this.renderer_.getExtraDataConfig(), Component.DATA));
 
 			_this.on('stateChanged', _this.handleStateChanged_);
@@ -7060,7 +7048,8 @@
 		}, {
 			key: 'createRenderer',
 			value: function createRenderer() {
-				return new this.constructor.RENDERER_MERGED(this);
+				var RendererCtor = (0, _metal.getStaticProperty)(this.constructor, 'RENDERER');
+				return new RendererCtor(this);
 			}
 
 			/**
@@ -7353,21 +7342,14 @@
 
 
 			/**
-	   * Merges an array of values for the ELEMENT_CLASSES property into a single object.
-	   * @param {!Array.<string>} values The values to be merged.
-	   * @return {!string} The merged value.
+	   * Merges two values for the ELEMENT_CLASSES property into a single one.
+	   * @param {string} val1
+	   * @param {string} val2
+	   * @return {string} The merged value.
 	   * @protected
 	   */
-			value: function mergeElementClasses_(values) {
-				var marked = {};
-				return values.filter(function (val) {
-					if (!val || marked[val]) {
-						return false;
-					} else {
-						marked[val] = true;
-						return true;
-					}
-				}).join(' ');
+			value: function mergeElementClasses_(val1, val2) {
+				return val1 ? val1 + ' ' + (val2 || '') : val2;
 			}
 
 			/**
@@ -7493,8 +7475,9 @@
 		}, {
 			key: 'setterElementClassesFn_',
 			value: function setterElementClassesFn_(val) {
-				if (this.constructor.ELEMENT_CLASSES_MERGED) {
-					val += ' ' + this.constructor.ELEMENT_CLASSES_MERGED;
+				var elementClasses = (0, _metal.getStaticProperty)(this.constructor, 'ELEMENT_CLASSES', this.mergeElementClasses_);
+				if (elementClasses) {
+					val += ' ' + elementClasses;
 				}
 				return val.trim();
 			}
@@ -7752,7 +7735,7 @@
 		createState_: function createState_(component, data) {
 			var state = new _metalState2.default(component.getInitialConfig(), component, component);
 			state.setKeysBlacklist_(this.BLACKLIST);
-			state.configState(_metal.object.mixin({}, data, component.constructor.STATE_MERGED));
+			state.configState(_metal.object.mixin({}, data, _metalState2.default.getStateStatic(component.constructor)));
 			this.getManagerData(component).state_ = state;
 		},
 
@@ -7874,7 +7857,6 @@
 	  */
 		setUp: function setUp(component, data) {
 			component.__DATA_MANAGER_DATA__ = {};
-			_metalState2.default.mergeStateStatic(component.constructor);
 			this.createState_(component, data);
 		}
 	};
@@ -8572,11 +8554,11 @@
 				var ctor = this.constructor;
 				if (ctor !== State) {
 					var defineContext;
-					var merged = State.mergeStateStatic(ctor);
 					if (this.obj_ === this) {
-						defineContext = merged ? ctor.prototype : false;
+						defineContext = ctor.hasConfiguredState_ ? false : ctor.prototype;
+						ctor.hasConfiguredState_ = true;
 					}
-					this.configState(ctor.STATE_MERGED, defineContext);
+					this.configState(State.getStateStatic(ctor), defineContext);
 				}
 			}
 
@@ -8701,14 +8683,22 @@
 			}
 
 			/**
+	   * Merges the STATE static variable for the given constructor function.
+	   * @param  {!Function} ctor Constructor function.
+	   * @return {boolean} Returns true if merge happens, false otherwise.
+	   * @static
+	   */
+
+		}, {
+			key: 'hasBeenSet',
+
+
+			/**
 	   * Checks if the value of the state key with the given name has already been
 	   * set. Note that this doesn't run the key's getter.
 	   * @param {string} name The name of the key.
 	   * @return {boolean}
 	   */
-
-		}, {
-			key: 'hasBeenSet',
 			value: function hasBeenSet(name) {
 				var info = this.getStateInfo(name);
 				return info.state === State.KeyStates.INITIALIZED || this.hasInitialValue_(name);
@@ -8787,8 +8777,9 @@
 			}
 
 			/**
-	   * Merges an array of values for the STATE property into a single object.
-	   * @param {!Array} values The values to be merged.
+	   * Merges two values for the STATE property into a single object.
+	   * @param {Object} mergedVal
+	   * @param {Object} currVal
 	   * @return {!Object} The merged value.
 	   * @static
 	   */
@@ -9022,22 +9013,14 @@
 				return disposed;
 			}
 		}], [{
-			key: 'mergeState',
-			value: function mergeState(values) {
-				return _metal.object.mixin.apply(null, [{}].concat(values.reverse()));
+			key: 'getStateStatic',
+			value: function getStateStatic(ctor) {
+				return (0, _metal.getStaticProperty)(ctor, 'STATE', State.mergeState);
 			}
-
-			/**
-	   * Merges the STATE static variable for the given constructor function.
-	   * @param  {!Function} ctor Constructor function.
-	   * @return {boolean} Returns true if merge happens, false otherwise.
-	   * @static
-	   */
-
 		}, {
-			key: 'mergeStateStatic',
-			value: function mergeStateStatic(ctor) {
-				return (0, _metal.mergeSuperClassesProperty)(ctor, 'STATE', State.mergeState);
+			key: 'mergeState',
+			value: function mergeState(mergedVal, currVal) {
+				return _metal.object.mixin({}, currVal, mergedVal);
 			}
 		}]);
 
@@ -9100,7 +9083,8 @@
 
 			_this.component_ = component;
 
-			if (_this.component_.constructor.SYNC_UPDATES_MERGED) {
+			_this.syncUpdates_ = (0, _metal.getStaticProperty)(component.constructor, 'SYNC_UPDATES');
+			if (_this.hasSyncUpdates()) {
 				_this.component_.on('stateKeyChanged', _this.handleRendererStateKeyChanged_.bind(_this));
 			}
 			return _this;
@@ -9162,6 +9146,17 @@
 			}
 
 			/**
+	   * Checks if this component has sync updates enabled.
+	   * @return {boolean}
+	   */
+
+		}, {
+			key: 'hasSyncUpdates',
+			value: function hasSyncUpdates() {
+				return this.syncUpdates_;
+			}
+
+			/**
 	   * Renders the component's whole content (including its main element).
 	   */
 
@@ -9196,7 +9191,7 @@
 		}, {
 			key: 'sync',
 			value: function sync(changes) {
-				if (!this.component_.constructor.SYNC_UPDATES_MERGED && this.shouldRerender_()) {
+				if (!this.hasSyncUpdates() && this.shouldRerender_()) {
 					this.update(changes);
 				}
 			}
@@ -10123,16 +10118,15 @@
 			comp.state = {};
 			var data = this.getManagerData(comp);
 
-			(0, _metal.mergeSuperClassesProperty)(ctor, 'PROPS', _metalState2.default.mergeState);
 			data.props_ = new _metalState2.default(comp.getInitialConfig(), comp.props, comp);
-			data.props_.configState(_metal.object.mixin({}, config, comp.constructor.PROPS_MERGED));
+			data.props_.configState(_metal.object.mixin({}, config, (0, _metal.getStaticProperty)(ctor, 'PROPS', _metalState2.default.mergeState)));
 			this.addUnconfiguredProps_(comp, data.props_, comp.getInitialConfig());
 
 			data.state_ = new _metalState2.default({}, comp.state, comp);
 			data.state_.setEventData({
 				type: 'state'
 			});
-			data.state_.configState(ctor.STATE_MERGED);
+			data.state_.configState(_metalState2.default.getStateStatic(ctor));
 		},
 
 
