@@ -1982,15 +1982,21 @@
 			}
 
 			/**
+	   * Gets the component that triggered the current patch operation.
+	   * @return {Component}
+	   */
+
+		}, {
+			key: 'getRef_',
+
+
+			/**
 	   * Returns the "ref" to be used for a component. Uses "key" as "ref" when
 	   * compatibility mode is on for the current renderer.
 	   * @param {!Object} config
 	   * @param {?string} ref
 	   * @protected
 	   */
-
-		}, {
-			key: 'getRef_',
 			value: function getRef_(config) {
 				var compatData = (0, _metal.getCompatibilityModeData)();
 				if (compatData) {
@@ -2081,7 +2087,7 @@
 
 				props.children = this.buildChildren_(tree.props.children);
 				this.componentToRender_ = null;
-				this.renderFromTag_(tag, props);
+				return this.renderFromTag_(tag, props);
 			}
 
 			/**
@@ -2326,10 +2332,12 @@
 		}, {
 			key: 'match_',
 			value: function match_(comp, Ctor, config) {
+				var shouldUpdate = true;
 				if (!this.isMatch_(comp, Ctor)) {
 					comp = new Ctor(config, false);
+					shouldUpdate = false;
 				}
-				if (comp.wasRendered) {
+				if (shouldUpdate) {
 					comp.getRenderer().startSkipUpdates();
 					comp.getDataManager().replaceNonInternal(comp, config);
 					comp.getRenderer().stopSkipUpdates();
@@ -2346,7 +2354,7 @@
 		}, {
 			key: 'patch',
 			value: function patch() {
-				this.isPatching_ = true;
+				patchingComponents_.push(this.component_);
 				if (!this.component_.element && this.parent_) {
 					// If the component has no content but was rendered from another component,
 					// we'll need to patch this parent to make sure that any new content will
@@ -2367,7 +2375,7 @@
 					var element = this.component_.element;
 					IncrementalDOM.patchOuter(element, this.renderInsidePatchDontSkip_);
 				}
-				this.isPatching_ = false;
+				patchingComponents_.pop();
 			}
 
 			/**
@@ -2481,7 +2489,7 @@
 			value: function renderInsidePatch() {
 				if (this.component_.wasRendered && !this.shouldUpdate() && IncrementalDOM.currentPointer() === this.component_.element) {
 					if (this.component_.element) {
-						IncrementalDOM.skipNode();
+						this.skipRender_();
 					}
 					return;
 				}
@@ -2498,6 +2506,7 @@
 			key: 'renderInsidePatchDontSkip_',
 			value: function renderInsidePatchDontSkip_() {
 				IncrementalDomRenderer.startedRenderingComponent(this.component_);
+				this.resetData_(this.incDomData_);
 				this.clearChanges_();
 				this.rootElementReached_ = false;
 				if (this.childComponents_) {
@@ -2513,7 +2522,6 @@
 				}
 				this.handleRendered_();
 				IncrementalDomRenderer.finishedRenderingComponent();
-				this.resetData_(this.incDomData_);
 			}
 
 			/**
@@ -2622,6 +2630,17 @@
 			}
 
 			/**
+	   * Skips rendering this component.
+	   * @protected
+	   */
+
+		}, {
+			key: 'skipRender_',
+			value: function skipRender_() {
+				IncrementalDOM.skipNode();
+			}
+
+			/**
 	   * Stores the component that has just started being rendered.
 	   * @param {!Component} comp
 	   */
@@ -2714,6 +2733,11 @@
 				return obj.incDomData_;
 			}
 		}, {
+			key: 'getPatchingComponent',
+			value: function getPatchingComponent() {
+				return patchingComponents_[patchingComponents_.length - 1];
+			}
+		}, {
 			key: 'isIncDomNode',
 			value: function isIncDomNode(node) {
 				return !!node[_IncrementalDomChildren2.default.CHILD_OWNER];
@@ -2771,6 +2795,7 @@
 	}(_metalComponent.ComponentRenderer);
 
 	var renderingComponents_ = [];
+	var patchingComponents_ = [];
 	var emptyChildren_ = [];
 
 	// Regex pattern used to find inline listeners.
@@ -3460,7 +3485,9 @@
 	   * @param {?Object<string, !Element>} keyMap
 	   */
 	  var removeChild = function removeChild(node, child, keyMap) {
-	    node.removeChild(child);
+	    if (child.parentNode === node) {
+	      node.removeChild(child);
+	    }
 	    context.markDeleted( /** @type {!Node}*/child);
 
 	    var key = getData(child).key;
@@ -7248,12 +7275,17 @@
 				if (!ctor.hasOwnProperty('__METAL_SYNC_FNS__')) {
 					var fns = {};
 					var keys = this.dataManager_.getSyncKeys(this);
+					var shouldCache = true;
 					for (var i = 0; i < keys.length; i++) {
 						var name = 'sync' + keys[i].charAt(0).toUpperCase() + keys[i].slice(1);
-						var fn = ctor.prototype[name];
+						var fn = ctor.prototype[name] || this[name];
 						if (fn) {
 							fns[keys[i]] = fn;
+							shouldCache = shouldCache && ctor.prototype[name];
 						}
+					}
+					if (!shouldCache) {
+						return fns;
 					}
 					ctor.__METAL_SYNC_FNS__ = fns;
 				}
@@ -9630,13 +9662,15 @@
 		if (currentParent_ === tree_) {
 			_IncrementalDomAop2.default.stopInterception();
 			isCapturing_ = false;
-			callback_.call(renderer_, tree_);
+			var node = callback_.call(renderer_, tree_);
 			callback_ = null;
 			currentParent_ = null;
 			renderer_ = null;
 			tree_ = null;
+			return node;
 		} else {
 			currentParent_ = currentParent_.parent;
+			return true;
 		}
 	}
 
@@ -9906,15 +9940,18 @@
 		}, {
 			key: 'generateKey_',
 			value: function generateKey_(key) {
+				key = _get(JSXRenderer.prototype.__proto__ || Object.getPrototypeOf(JSXRenderer.prototype), 'generateKey_', this).call(this, key);
+				var comp = _metalIncrementalDom2.default.getPatchingComponent();
+				var renderer = comp.getRenderer();
 				if (!(0, _metal.isDefAndNotNull)(key)) {
-					var element = this.component_.element;
-					if (this.isPatching_ && IncrementalDOM.currentPointer() === element && element) {
-						if (element.__incrementalDOMData) {
-							key = element.__incrementalDOMData.key;
-						}
-					} else {
+					if (renderer.rootElementRendered_) {
 						key = JSXRenderer.KEY_PREFIX + JSXRenderer.incElementCount();
+					} else if (comp.element && comp.element.__incrementalDOMData) {
+						key = comp.element.__incrementalDOMData.key;
 					}
+				}
+				if (!renderer.rootElementRendered_) {
+					renderer.rootElementRendered_ = true;
 				}
 				return key;
 			}
@@ -9948,8 +9985,19 @@
 	   */
 
 		}, {
-			key: 'renderIncDom',
+			key: 'patch',
 
+
+			/**
+	   * Overrides the original method from `IncrementalDomRenderer` so we can
+	   * keep track of if the root element of the patched component has already
+	   * been rendered or not.
+	   * @override
+	   */
+			value: function patch() {
+				this.rootElementRendered_ = false;
+				_get(JSXRenderer.prototype.__proto__ || Object.getPrototypeOf(JSXRenderer.prototype), 'patch', this).call(this);
+			}
 
 			/**
 	   * Overrides the original method from `IncrementalDomRenderer` to handle the
@@ -9957,6 +10005,9 @@
 	   * function.
 	   * @override
 	   */
+
+		}, {
+			key: 'renderIncDom',
 			value: function renderIncDom() {
 				if (this.component_.render) {
 					iDOMHelpers.renderArbitrary(this.component_.render());
@@ -9981,6 +10032,17 @@
 	   * decided not to render anything).
 	   */
 
+		}, {
+			key: 'skipRender_',
+
+
+			/**
+	   * @inheritDoc
+	   */
+			value: function skipRender_() {
+				JSXRenderer.skipChild();
+				_get(JSXRenderer.prototype.__proto__ || Object.getPrototypeOf(JSXRenderer.prototype), 'skipRender_', this).call(this);
+			}
 		}], [{
 			key: 'incElementCount',
 			value: function incElementCount() {
@@ -9991,7 +10053,7 @@
 		}, {
 			key: 'skipChild',
 			value: function skipChild() {
-				JSXRenderer.incElementCount();
+				IncrementalDOM.elementVoid(JSXRenderer.incElementCount);
 			}
 		}]);
 
